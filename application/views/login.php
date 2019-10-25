@@ -34,28 +34,28 @@
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
 				<div class="contact-form wthree ">
-						<div class="row">
-							<div class="col-md-12 number-paymk">
-								<?= $this->session->flashdata('message')?>
-								<form class="cc-form" action="<?= base_url('login')?>" method="post">
-									<div class="form-group ">
-										<!-- <label>Email</label> -->
-										<input class="form-control" placeholder="Email" name="email" type="text">
-										<?= form_error('email', '<small class="text-danger pl-3">', '</small>')?>
-									</div>
-									<div class="form-group ">
-										<!-- <label>Password</label> -->
-										<input class="form-control" placeholder="Password" name="password" type="password">
-										<?= form_error('password', '<small class="text-danger pl-3">', '</small>')?>
-									</div>
-								
-									<!-- <div class="form-group col-md-6 "> -->
-									<input type="submit" style="margin:0px; width:100%;" class="submit" value="Login">
-									<!-- </div> -->
-									<p style="margin:5px;">Belum punya akun? <a href="<?= base_url('register')?>">Daftar</a></p>
-								</form>
-							</div>
+					<div class="row">
+						<div class="col-md-12 number-paymk">
+							<?= $this->session->flashdata('message')?>
+							<form class="cc-form" action="<?= base_url('login')?>" method="post">
+								<div class="form-group ">
+									<!-- <label>Email</label> -->
+									<input class="form-control" placeholder="Email" name="email" type="text">
+									<?= form_error('email', '<small class="text-danger pl-3">', '</small>')?>
+								</div>
+								<div class="form-group ">
+									<!-- <label>Password</label> -->
+									<input class="form-control" placeholder="Password" name="password" type="password">
+									<?= form_error('password', '<small class="text-danger pl-3">', '</small>')?>
+								</div>
+							
+								<!-- <div class="form-group col-md-6 "> -->
+								<input type="submit" style="margin:0px; width:100%;" class="submit" value="Login">
+								<!-- </div> -->
+								<p style="margin:5px;">Belum punya akun? <a href="<?= base_url('register')?>">Daftar</a></p>
+							</form>
 						</div>
+					</div>
 				</div>
 			</div>
 			
