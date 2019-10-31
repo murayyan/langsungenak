@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Okt 2019 pada 18.20
+-- Waktu pembuatan: 31 Okt 2019 pada 14.26
 -- Versi server: 10.3.16-MariaDB
 -- Versi PHP: 7.3.7
 
@@ -21,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `langsung_enak`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `nohp` varchar(15) DEFAULT NULL,
+  `level` enum('SPV','KURIR','PRODUKSI') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `admin`
+--
+
+INSERT INTO `admin` (`id`, `email`, `password`, `nama`, `nohp`, `level`) VALUES
+(3, 'lidiya@gmail.com', '$2y$10$SzOTi1IUZILPf7T1v0FJYeirLuOveX7Eljg10ss/4uhKj7E49Gk2e', 'Maulidiya Qurrota', '085748009552', 'SPV'),
+(4, 'rayyan@gmail.com', '$2y$10$SzOTi1IUZILPf7T1v0FJYeirLuOveX7Eljg10ss/4uhKj7E49Gk2e', 'Muhammad Rayyan', '085748009552', 'KURIR'),
+(5, 'zeddin@gmail.com', '$2y$10$SzOTi1IUZILPf7T1v0FJYeirLuOveX7Eljg10ss/4uhKj7E49Gk2e', 'Zeddin Arief', '0857480095521', 'PRODUKSI');
 
 -- --------------------------------------------------------
 
@@ -131,23 +155,15 @@ CREATE TABLE `produk` (
   `gambar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `user`
---
-
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `level` enum('spv','pengantar','admin') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `bahan_baku`
@@ -192,14 +208,14 @@ ALTER TABLE `produk`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `bahan_baku`
@@ -241,12 +257,6 @@ ALTER TABLE `pengantar`
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `user`
---
-ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
