@@ -107,6 +107,14 @@
             </a>
           </li>
           <?php }else if($this->session->userdata('level')=='PRODUKSI'){ ?>
+            <li class="nav-item has-treeview">
+            <a href="<?= base_url('admin/dashboard');?>" class="nav-link <?php echo $page=='dashboard'?'active':''; ?>">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="<?= base_url('admin/data_user');?>" class="nav-link <?php echo $page=='register'?'active':''; ?>">
               <i class="nav-icon fas fa-th"></i>
@@ -116,6 +124,14 @@
             </a>
           </li>
           <?php }else{?>
+            <li class="nav-item has-treeview">
+            <a href="<?= base_url('admin/dashboard');?>" class="nav-link <?php echo $page=='dashboard'?'active':''; ?>">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
             <li class="nav-item">
             <a href="<?= base_url('admin/data_user');?>" class="nav-link <?php echo $page=='register'?'active':''; ?>">
               <i class="nav-icon fas fa-th"></i>

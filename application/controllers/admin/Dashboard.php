@@ -9,7 +9,7 @@ class Dashboard extends CI_Controller {
 	}
 	
 	public function authentication(){
-		if ($this->session->userdata('level')!='SPV') {
+		if ($this->session->userdata('login')!='admin') {
 			redirect('admin/login');
 		}
 	}
