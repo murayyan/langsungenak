@@ -9,16 +9,15 @@ class Dashboard extends CI_Controller {
 	}
 	
 	public function authentication(){
-		if ($this->session->userdata('login')!='admin') {
+		if ($this->session->userdata('level')!='SPV') {
 			redirect('admin/login');
 		}
 	}
 
-	public function page($page){
+	public function dashboard(){
 		$this->authentication();
-		switch($page){
-			case 'dashboard': $this->load->view('admin/dashboard');break;
-		}
+	    $this->load->view('admin/dashboard');
+		
 		
 	}
 

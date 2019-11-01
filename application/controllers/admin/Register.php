@@ -10,7 +10,7 @@ class Register extends CI_Controller {
 	}
 	
 	public function authentication(){
-		if ($this->session->userdata('level')!='spv') {
+		if ($this->session->userdata('level')!='SPV') {
 			redirect('admin/login');
 		}
 	}

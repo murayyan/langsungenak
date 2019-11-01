@@ -47,7 +47,7 @@ class Authentication extends CI_Controller {
 			redirect('login');
 		}
 	}
-	
+
 	public function login(){
 		if ($this->session->userdata('login')=='customer') {
 			redirect(base_url());

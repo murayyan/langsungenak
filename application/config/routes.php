@@ -59,6 +59,6 @@ $route['logout'] = 'authentication/logout';
 
 $route['admin/login'] = 'authentication/admin_login';
 $route['admin/logout'] = 'authentication/admin_logout';
-$route['admin/dashboard'] = 'admin/dashboard/page/dashboard';
+$route['admin/dashboard'] = 'admin/dashboard/dashboard';
 $route['admin/data_user'] = 'admin/register/data_user';
 $route['admin/register'] = 'admin/register/register';
