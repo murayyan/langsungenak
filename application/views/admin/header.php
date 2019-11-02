@@ -91,7 +91,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link <?php echo $page=='produk'?'active':''; ?>">
+            <a href="<?= base_url('admin/data_produk') ?>" class="nav-link <?php echo $page=='produk'?'active':''; ?>">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Produk

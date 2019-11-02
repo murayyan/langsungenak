@@ -6,7 +6,7 @@ class Register extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('m_admin');
+        $this->load->model('M_admin');
 	}
 	
 	public function authentication(){
@@ -17,7 +17,7 @@ class Register extends CI_Controller {
 
 	public function data_user(){
         $this->authentication();
-        $data['user'] = $this->m_admin->data_user()->result_array();
+        $data['user'] = $this->M_admin->data_user()->result_array();
 		$this->load->view('admin/data_user', $data);		
     }
     
@@ -44,7 +44,7 @@ class Register extends CI_Controller {
 				'nohp' => $this->input->post('nohp')
 			];
 
-			$this->m_admin->register($data);
+			$this->M_admin->register($data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Registrasi Berhasil!</div>');
 			redirect('admin/data_user');
 		}

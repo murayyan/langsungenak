@@ -6,8 +6,8 @@ class Authentication extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->library('form_validation');
-		$this->load->model('m_customer');
-		$this->load->model('m_admin');
+		$this->load->model('M_customer');
+		$this->load->model('M_admin');
 	}
 	
 	public function authentication(){
@@ -42,7 +42,7 @@ class Authentication extends CI_Controller {
 				'is_active' => 'active'
 			];
 
-			$this->m_customer->register($data);
+			$this->M_customer->register($data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Registrasi Berhasil!</div>');
 			redirect('login');
 		}
@@ -66,7 +66,7 @@ class Authentication extends CI_Controller {
 	private function _cek_login(){
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
-		$user = $this->m_customer->cek_user(['email'=>$email])->row_array();
+		$user = $this->M_customer->cek_user(['email'=>$email])->row_array();
 		
 		if ($user) {
 			if(password_verify($password, $user['password'])){
@@ -125,7 +125,7 @@ class Authentication extends CI_Controller {
 				'is_active' => 'active'
 			];
 
-			$this->m_admin->register($data);
+			$this->M_admin->register($data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Registrasi Berhasil!</div>');
 			redirect('login');
 		}
@@ -150,7 +150,7 @@ class Authentication extends CI_Controller {
 	private function _cek_login_admin(){
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
-		$user = $this->m_admin->cek_admin(['email'=>$email])->row_array();
+		$user = $this->M_admin->cek_admin(['email'=>$email])->row_array();
 		
 		if ($user) {
 			if(password_verify($password, $user['password'])){
