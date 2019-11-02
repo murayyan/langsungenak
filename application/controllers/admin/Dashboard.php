@@ -18,10 +18,6 @@ class Dashboard extends CI_Controller {
 		$this->authentication();
 	    $this->load->view('admin/dashboard');
 		
-		
 	}
-
-
-
-
+	//update
 }
