@@ -17,8 +17,8 @@ class Produk extends CI_Controller {
 
 	public function data_produk(){
         $this->authentication();
-        $data['user'] = $this->M_produk->data_user()->result_array();
-		$this->load->view('admin/data_user', $data);		
+        $data['produk'] = $this->M_produk->data_produk()->result_array();
+		$this->load->view('admin/data_produk', $data);		
     }
     
 	public function add_produk(){
@@ -27,22 +27,44 @@ class Produk extends CI_Controller {
 		$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
 		$this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
 		$this->form_validation->set_rules('harga', 'Harga', 'trim|numeric');
-		$this->form_validation->set_rules('gambar', 'Gambar', 'required');
+		// $this->form_validation->set_rules('gambar', 'Gambar', 'required');
 		if ($this->form_validation->run() == false) {
 			# code...
 			$this->load->view('admin/produk');
 		}else{
+
+			$filename = null;
+			if ($_FILES['gambar']['name'] != '') {
+				$config = [
+					'file_name' 	=> time() . '_' . substr(str_replace(' ', '_', $_FILES['gambar']['name']), -12),
+					'upload_path' 	=> 'assets/images/gambar_produk',
+					'allowed_types'	=> 'jpg|jpeg|png|pdf',
+					'max_size' 		=> '10000'
+				];
+
+				$this->load->library('upload', $config);
+				
+				if (!$this->upload->do_upload('gambar')) { // jika gak berhasil upload
+					$this->session->set_flashdata('gambar_error', '<small class="text-danger pl-3">' . $this->upload->display_errors() . '</small>');
+					echo "<script>history.go(-1);</script>";
+					die;
+				}else{
+					$filename = $config['file_name'];
+				}
+				
+			}
+
 			$data = [
 				'nama_produk' => $this->input->post('nama_produk'),
 				'deskripsi' => $this->input->post('deskripsi'),
 				'kategori' => $this->input->post('kategori'),
 				'harga' => $this->input->post('harga'),
-				'gambar' => $this->input->post('nohp')
+				'gambar' => $filename
 			];
 
 			$this->M_produk->add_produk($data);
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Registrasi Berhasil!</div>');
-			redirect('admin/data_user');
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Menambahkan Produk!</div>');
+			redirect('admin/data_produk');
 		}
 	}
 
