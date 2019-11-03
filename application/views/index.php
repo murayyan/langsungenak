@@ -146,19 +146,23 @@
 							<div class="info-product-price">
 								<span class="item_price">Rp 8.500</span>
 							</div>
-							<div class="quantity-select">
-							<div class="value-button value-minus" id="decrease" value="Decrease Value">-</div>
-							<input type="number" class="number" value="0" min="0" />
-							<div class="value-button value-plus" id="increase" value="Increase Value">+</div>
+							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+							<fieldset>
+								<div class="quantity-select">
+									<div class="value-button value-minus" id="decrease" value="Decrease Value">-</div>
+									<input type="number" class="number" value="0" min="0" />
+									<div class="value-button value-plus" id="increase" value="Increase Value">+</div>
+									<input type="submit" name="submit" value="Add to cart" class="button">
+								</div>
+							<fieldset>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="checkout-right-basket pull-right">
+				<!-- <div class="checkout-right-basket pull-right">
 					<a href="payment.html">CEHECKOUT PESANAN
-						<!-- <span class="fa fa-hand-o-right" aria-hidden="true"></span> -->
 					</a>
-				</div>
+				</div> -->
 			</div>
 			<div class="clearfix"> </div>
 		</div>
