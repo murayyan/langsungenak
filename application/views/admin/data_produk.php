@@ -34,9 +34,10 @@ include 'header.php';
                   <tr>
                     <th>No.</th>
                     <th>Nama Produk</th>
-                    <th>Deskripsi</th>
                     <th>Kategori</th>
                     <th>Harga</th>
+                    <th>Foto</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -46,9 +47,12 @@ include 'header.php';
                   <tr>
                     <td><?= $no ?></td>
                     <td><?= $produk['nama_produk'] ?></td>
-                    <td><?= $produk['deskripsi'] ?></td>
                     <td><?= $produk['kategori'] ?></td>
                     <td><?= $produk['harga'] ?></td>
+                    <td><?= $produk['gambar'] ?></td>
+                    <td>
+                      
+                    </td>
                   </tr>
                 <?php $no++; } ?>
                   </tfoot>
