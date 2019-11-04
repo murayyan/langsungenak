@@ -26,7 +26,7 @@ include 'header.php';
               </div>
               <div class="card-body">
               <?= $this->session->flashdata('message')?>
-              <a href="<?= base_url('admin/register')?>" class="btn btn-success swalDefaultSuccess mb-3">
+              <a href="<?= base_url('admin/add_produk')?>" class="btn btn-success swalDefaultSuccess mb-3">
                   <i class="fa fa-plus"></i> Tambah Produk
                   </a>
                 <table id="example1" class="table table-bordered table-striped">

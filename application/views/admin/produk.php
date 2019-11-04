@@ -24,7 +24,7 @@ include 'header.php';
                   Tambah Produk
                 </h3>
               </div>
-              <form action="<?= base_url('admin/add_produk')?>" method="post">
+              <form action="<?= base_url('admin/add_produk')?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
@@ -37,13 +37,13 @@ include 'header.php';
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Deskripsi</label>
-                                <select name="akses" class="form-control select2" style="width: 100%;">
-                                    <option value="SPV">SPV</option>
-                                    <option value="PRODUKSI">Admin Produksi</option>
-                                    <option value="KURIR">Kurir</option>
+                                <label for="kategori">Kategori</label>
+                                <select name="kategori" class="form-control select2" style="width: 100%;">
+                                    <option disabled selected value>--- Pilih Kategori ---</option>
+                                    <option value="Roti Gal" <?= (set_value('kategori') == 'Roti Gal') ? 'selected' : '' ?>>Roti Gal</option>
+                                    <option value="Roti Boy" <?= (set_value('kategori') == 'Roti Boy') ? 'selected' : '' ?>>Roti Boy</option>
                                 </select>
-                                <?= form_error('akses', '<small class="text-danger pl-3">', '</small>')?>
+                                <?= form_error('kategori', '<small class="text-danger pl-3">', '</small>')?>
                             </div>
                         </div>
                       
@@ -51,16 +51,16 @@ include 'header.php';
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" name="email" value="<?= set_value('email')?>" placeholder="Email">
-                                <?= form_error('email', '<small class="text-danger pl-3">', '</small>')?>
+                                <label>Deskripsi</label>
+                                <textarea class="form-control" name="deskripsi" placeholder="Deskripsi"><?= set_value('deskripsi')?></textarea>
+                                <?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>')?>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">No. Hp</label>
-                                <input type="text" class="form-control" name="nohp" value="<?= set_value('nohp')?>" placeholder="No. HP">
-                                <?= form_error('nohp', '<small class="text-danger pl-3">', '</small>')?>
+                                <label for="harga">Harga</label>
+                                <input type="number" class="form-control" name="harga" value="<?= set_value('harga')?>" placeholder="Harga">
+                                <?= form_error('harga', '<small class="text-danger pl-3">', '</small>')?>
                             </div>
                         </div>
                     </div>
@@ -68,16 +68,9 @@ include 'header.php';
                         <div class="col-sm-6">
                         <!-- text input -->
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" class="form-control" name="password" placeholder="Password">
-                                <?= form_error('password', '<small class="text-danger pl-3">', '</small>')?>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Konfirmasi Password</label>
-                                <input type="password" class="form-control" name="password2" placeholder="Konfirmasi Password">
-                                <?= form_error('password2', '<small class="text-danger pl-3">', '</small>')?>
+                                <label for="gambar">Gambar</label>
+                                <input type="file" class="form-control" name="gambar" value="<?= set_value('gambar') ?>" required>
+                                <?= $this->session->flashdata('gambar_error')?>
                             </div>
                         </div>
                     </div>
@@ -86,7 +79,7 @@ include 'header.php';
                 <!-- /.card-body -->
 
                 <div class="card-footer pull-right">
-                  <button type="submit" class="btn btn-primary float-right ml-2">Register</button>
+                  <button type="submit" class="btn btn-primary float-right ml-2">Simpan Produk</button>
               </form>
                 </div>
               <!-- /.card -->

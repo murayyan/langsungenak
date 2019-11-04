@@ -1118,7 +1118,7 @@ h3.heading-tittle {
 }
 
 .item-info-product {
-	margin-top: 10px;
+	margin-top: 0px;
 	text-align: center;
 }
 
@@ -1129,7 +1129,7 @@ h3.heading-tittle {
 }
 
 .info-product-price {
-	margin: 12px 0;
+	margin: 0px 0;
 }
 
 span.item_price {
@@ -2804,7 +2804,6 @@ img.zoom-img:hover {
 .checkout-right h4 {
 	color: #FF5722;
 	font-size: 27px;
-	margin-bottom: 10px;
 }
 
 table.timetable_sub {
@@ -2863,7 +2862,7 @@ td.invert-image a img {
 .value-minus,
 .value-plus {
 	height: 40px;
-	line-height: 24px;
+	line-height: 18px;
 	width: 40px;
 	margin-right: 3px;
 	display: inline-block;
