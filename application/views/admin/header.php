@@ -18,6 +18,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')?>">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="<?php echo base_url('assets/css/magnific-popup.css')?>">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">

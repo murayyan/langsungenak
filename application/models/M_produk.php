@@ -9,15 +9,22 @@ class M_produk extends CI_Model{
     private $harga;
     private $gambar;
 
+	public function data_produk(){
+		return $this->db->get('produk');
+	}
+
+	public function getProduk($where){
+		return $this->db->get_where('produk', $where);
+	}
+
 	public function add_produk($data){
 		$this->db->insert('produk', $data);
 	}
-	public function data_produk(){
-		return $this->db->get('produk');
-    }
-	public function get_produk($id_produk){
-		return $this->db->get_where('produk', array('id'=>$id_produk));
-    }
+
+	public function edit_produk($data, $where){
+		$this->db->where($where);
+		$this->db->update('produk', $data);
+	}
     
 }
 ?>

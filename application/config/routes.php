@@ -65,4 +65,5 @@ $route['admin/dashboard'] = 'admin/dashboard/dashboard';
 $route['admin/data_user'] = 'admin/register/data_user';
 $route['admin/register'] = 'admin/register/register';
 $route['admin/data_produk'] = 'admin/produk/data_produk';
-$route['admin/add_produk'] = 'admin/produk/add_produk';
+$route['admin/produk'] = 'admin/produk/add_produk';
+$route['admin/produk/(:num)'] = 'admin/produk/edit_produk/$1';

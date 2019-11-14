@@ -30,7 +30,8 @@ class Produk extends CI_Controller {
 		// $this->form_validation->set_rules('gambar', 'Gambar', 'required');
 		if ($this->form_validation->run() == false) {
 			# code...
-			$this->load->view('admin/produk');
+			$data['jenis_form'] = 'add';
+			$this->load->view('admin/produk', $data);
 		}else{
 
 			$filename = null;
@@ -64,6 +65,59 @@ class Produk extends CI_Controller {
 
 			$this->M_produk->add_produk($data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Menambahkan Produk!</div>');
+			redirect('admin/data_produk');
+		}
+	}
+
+	private function edit_produk($id)
+	{
+		$this->authentication();
+		$this->form_validation->set_rules('nama_produk', 'Nama Produk', 'trim|required');
+		$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
+		$this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
+		$this->form_validation->set_rules('harga', 'Harga', 'trim|numeric');
+		// $this->form_validation->set_rules('gambar', 'Gambar', 'required');
+
+		$data['produk'] = $this->M_produk->getProduk(['id' => $id])->result_array();
+		
+		if ($this->form_validation->run() == false) {
+			# code...
+			$data['jenis_form'] = 'edit';
+			$this->load->view('admin/produk', $data);
+		} else {
+			
+			if ($_FILES['gambar']['name'] != '') {
+				$config = [
+					'file_name' 	=> time() . '_' . substr(str_replace(' ', '_', $_FILES['gambar']['name']), -12),
+					'upload_path' 	=> 'assets/images/gambar_produk',
+					'allowed_types'	=> 'jpg|jpeg|png|pdf',
+					'max_size' 		=> '10000'
+				];
+
+				$this->load->library('upload', $config);
+				
+				if (!$this->upload->do_upload('gambar')) { // jika gak berhasil upload
+					$this->session->set_flashdata('gambar_error', '<small class="text-danger pl-3">' . $this->upload->display_errors() . '</small>');
+					echo "<script>history.go(-1);</script>";
+					die;
+				}else{
+					$filename = $config['file_name'];
+				}
+				
+			} else {
+				$filename = $this->input->post('old_gambar');
+			}
+
+			$data = [
+				'nama_produk' => $this->input->post('nama_produk'),
+				'deskripsi' => $this->input->post('deskripsi'),
+				'kategori' => $this->input->post('kategori'),
+				'harga' => $this->input->post('harga'),
+				'gambar' => $filename
+			];
+
+			$this->M_produk->edit_produk($data, ['id' => $id]);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Menyunting Produk!</div>');
 			redirect('admin/data_produk');
 		}
 	}
