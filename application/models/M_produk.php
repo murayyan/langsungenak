@@ -13,6 +13,10 @@ class M_produk extends CI_Model{
 		return $this->db->get('produk');
 	}
 
+	public function getProduk($where){
+		return $this->db->get_where('produk', $where);
+	}
+
 	public function add_produk($data){
 		$this->db->insert('produk', $data);
 	}

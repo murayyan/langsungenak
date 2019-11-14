@@ -29,6 +29,23 @@
 			});
 
 		});
+
+		$(document).ready(function() {
+			$('.popup-foto').magnificPopup({
+				// delegate: 'a',
+				type:'image',
+				// type: 'inline',
+				fixedContentPos: false,
+				fixedBgPos: true,
+				overflowY: 'auto',
+				// closeOnBgClick: true,
+				closeBtnInside: true,
+				preloader: false,
+				midClick: true,
+				removalDelay: 300
+				// mainClass: 'my-mfp-zoom-in'
+			});
+		});
 	</script>
 	<!-- Large modal -->
 	<!-- <script>
@@ -158,6 +175,12 @@
 	<script src="<?php echo base_url('assets/js/bootstrap.js')?>"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
+	<script>
+		function deleteData(id, nama) {
+			document.getElementById('idHapus').value = id
+			document.getElementById("kalimatHapus").innerHTML = "Yakin mau hapus personel \"" + nama + "\" secara permanen ?"
+		}
+	</script>
 
 </body>
 
