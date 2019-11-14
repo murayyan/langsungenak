@@ -15,6 +15,9 @@ class M_produk extends CI_Model{
 	public function data_produk(){
 		return $this->db->get('produk');
     }
+	public function get_produk($id_produk){
+		return $this->db->get_where('produk', array('id'=>$id_produk));
+    }
     
 }
 ?>

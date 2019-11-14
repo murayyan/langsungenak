@@ -33,6 +33,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/jquery-ui1.css')?>">
 	<!-- fonts -->
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+	
 </head>
 <body>
 	<!-- //top-header -->

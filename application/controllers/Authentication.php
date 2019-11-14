@@ -73,6 +73,7 @@ class Authentication extends CI_Controller {
 				$sess = [
 					'email'=>$user['email'],
 					'nama'=>$user['nama'],
+					'id'=>$user['id'],
 					'login'=>'customer'
 				];
 				$this->session->set_userdata($sess);
