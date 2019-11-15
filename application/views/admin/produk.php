@@ -27,7 +27,7 @@ include 'header.php';
                     Tambah Produk
                   </h3>
                 </div>
-                <form action="<?= base_url('admin/add_produk')?>" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url('admin/produk')?>" method="post" enctype="multipart/form-data">
                   <div class="card-body">
                       <div class="row">
                           <div class="col-sm-6">
@@ -62,7 +62,7 @@ include 'header.php';
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="harga">Harga</label>
-                                  <input type="number" class="form-control" name="harga" value="<?= set_value('harga')?>" placeholder="Harga">
+                                  <input type="number" class="form-control" name="harga" min="0" value="<?= set_value('harga')?>" placeholder="Harga">
                                   <?= form_error('harga', '<small class="text-danger pl-3">', '</small>')?>
                               </div>
                           </div>
@@ -97,7 +97,7 @@ include 'header.php';
                     Edit Produk
                   </h3>
                 </div>
-                <form action="<?= base_url('admin/edit_produk' . $produk['id'])?>" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url('admin/produk/' . $produk['id'])?>" method="post" enctype="multipart/form-data">
                   <div class="card-body">
                       <div class="row">
                           <div class="col-sm-6">
@@ -132,7 +132,7 @@ include 'header.php';
                           <div class="col-sm-6">
                               <div class="form-group">
                                   <label for="harga">Harga</label>
-                                  <input type="number" class="form-control" name="harga" value="<?= $produk['harga'] ?>" placeholder="Harga">
+                                  <input type="number" class="form-control" name="harga" min="0" value="<?= $produk['harga'] ?>" placeholder="Harga">
                                   <?= form_error('harga', '<small class="text-danger pl-3">', '</small>')?>
                               </div>
                           </div>
@@ -149,7 +149,7 @@ include 'header.php';
                           </div>
                           <div class="col-sm-6">
                             <a href="<?= base_url('assets/images/gambar_produk/' . $produk['gambar']) ?>">
-                              <img style="height: 100px" src="<?= base_url('assets/images/gambar_produk/' . $produk['gambar']) ?>" >
+                              <img style="height: 200px" src="<?= base_url('assets/images/gambar_produk/' . $produk['gambar']) ?>" >
                             </a>
                           </div>
                       </div>
