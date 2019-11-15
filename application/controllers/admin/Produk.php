@@ -5,6 +5,7 @@ class Produk extends CI_Controller {
 	 
 	public function __construct(){
 		parent::__construct();
+		$this->load->helper('file');
         $this->load->library('form_validation');
         $this->load->model('M_produk');
 	}
@@ -69,7 +70,7 @@ class Produk extends CI_Controller {
 		}
 	}
 
-	private function edit_produk($id)
+	public function edit_produk($id)
 	{
 		$this->authentication();
 		$this->form_validation->set_rules('nama_produk', 'Nama Produk', 'trim|required');
@@ -78,8 +79,9 @@ class Produk extends CI_Controller {
 		$this->form_validation->set_rules('harga', 'Harga', 'trim|numeric');
 		// $this->form_validation->set_rules('gambar', 'Gambar', 'required');
 
-		$data['produk'] = $this->M_produk->getProduk(['id' => $id])->result_array();
-		
+		$data['produk'] = $this->M_produk->getProduk(['id' => $id])->row_array();
+		$old_gambar = $this->input->post('old_gambar');
+
 		if ($this->form_validation->run() == false) {
 			# code...
 			$data['jenis_form'] = 'edit';
@@ -102,10 +104,11 @@ class Produk extends CI_Controller {
 					die;
 				}else{
 					$filename = $config['file_name'];
+					unlink('./assets/images/gambar_produk/'. $old_gambar);
 				}
 				
 			} else {
-				$filename = $this->input->post('old_gambar');
+				$filename = $old_gambar;
 			}
 
 			$data = [
