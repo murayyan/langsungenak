@@ -80,17 +80,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<?php }else{ ?>
 				
 				<ul>
-					<li>
-						<a class="nav-stylehead" href="index.html">Home</a>
+					
+					<li class="">
+						<a class="nav-stylehead" href="<?= base_url()?>">Katalog</a>
 					</li>
 					<li class="">
-						<a class="nav-stylehead" href="about.html">Katalog</a>
-					</li>
-					<li class="">
-						<a class="nav-stylehead" href="faqs.html">Pesanan</a>
+						<a class="nav-stylehead" href="<?= base_url('pesanan')?>">Pesanan</a>
 					</li>
 					<li class="">
 						<a class="nav-stylehead" href="faqs.html">Profil</a>
+					</li>
+					<li>
+							
+							<input type="hidden" name="cmd" value="_cart">
+							<input type="hidden" name="display" value="1">
+							<a href="<?= base_url('checkout')?>" class="w3view-cart" type="submit" name="submit" value="">
+								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+							(<?= $this->cart->total_items()?>)
+							</a>
 					</li>
 					<li>
 						<a href="<?= base_url('logout')?>"><span class="fa fa-unlock-alt" aria-hidden="true"></span> Log Out </a>

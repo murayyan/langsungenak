@@ -96,6 +96,24 @@ $(function() {
 
 	<!--quantity-->
 	<script>
+		function tgl_indo(tgl) {
+			var bulan = [];
+			bulan["01"] = "Januari";
+			bulan["02"] = "Februari";
+			bulan["03"] = "Maret";
+			bulan["04"] = "April";
+			bulan["05"] = "Mei";
+			bulan["06"] = "Juni";
+			bulan["07"] = "Juli";
+			bulan["08"] = "Agustus";
+			bulan["09"] = "September";
+			bulan["10"] = "Oktober";
+			bulan["11"] = "November";
+			bulan["12"] = "Desember";
+			var tanggal = tgl.split("-");
+			var bln = tanggal[1];
+			return (tanggal[2] + " " + bulan[bln] + " " + tanggal[0])
+		}
 		 function rubah(angka){
 			var reverse = angka.toString().split('').reverse().join(''),
 			ribuan = reverse.match(/\d{1,3}/g);
@@ -104,18 +122,39 @@ $(function() {
 			}
 		$('.value-plus').on('click', function () {
 			var divUpd = $(this).parent().find('.number');
-			var divTot = $(this).parent().find('.price');
-			var harga_satuan = parseInt(divTot.val(), 10)/parseInt(divUpd.val(), 10);
+			var divPrice = $(this).parent().find('.price');
+			var divTot = $(this).parent().find('.total_price');
 			var	newVal = parseInt(divUpd.val(), 10) + 1;
-				divUpd.val(newVal);
-				divTot.val(newVal*harga_satuan);
-				$('#tot_harga_item').text('Rp '+rubah(newVal*harga_satuan));
+			divUpd.val(newVal);
+			divTot.val(newVal*parseInt(divPrice.val(), 10));
+			var divHarga = $(this).parent().parent().parent().parent().find('.tot_harga');
+			divHarga.text('Rp '+rubah(newVal*parseInt(divPrice.val(), 10)));
+			var sum_item_value = $(this).parent().parent().parent().parent().parent().find('.sum_item').text();
+			var sum_item = $(this).parent().parent().parent().parent().parent().find('.sum_item');
+			sum_item.text(parseInt(sum_item_value, 10)+1);
+			var sum_price_value = $(this).parent().parent().parent().parent().parent().find('.total_prices');
+			var sum_price = $(this).parent().parent().parent().parent().parent().find('.sum_price');
+			sum_price.text('Rp '+rubah((parseInt(sum_price_value.val(), 10))+(parseInt(divPrice.val(), 10))));
+			sum_price_value.val((parseInt(sum_price_value.val(), 10))+(parseInt(divPrice.val(), 10)));
 		});
 
 		$('.value-minus').on('click', function () {
-			var divUpd = $(this).parent().find('.number'),
-				newVal = parseInt(divUpd.val(), 10) - 1;
-			if (newVal >= 0) divUpd.val(newVal);
+			var divUpd = $(this).parent().find('.number');
+			var divPrice = $(this).parent().find('.price');
+			var divTot = $(this).parent().find('.total_price');
+			var	newVal = parseInt(divUpd.val(), 10) - 1;
+			if (newVal >= 1) divUpd.val(newVal);
+			if (newVal >= 1) divTot.val(newVal*parseInt(divPrice.val(), 10));
+			var divHarga = $(this).parent().parent().parent().parent().find('.tot_harga');
+			if (newVal >= 1) divHarga.text('Rp '+rubah(newVal*parseInt(divPrice.val(), 10)));
+			var sum_item_value = $(this).parent().parent().parent().parent().parent().find('.sum_item').text();
+			var sum_item = $(this).parent().parent().parent().parent().parent().find('.sum_item');
+			if (newVal >= 1) sum_item.text(parseInt(sum_item_value, 10)-1);
+			var sum_price_value = $(this).parent().parent().parent().parent().parent().find('.total_prices');
+			var sum_price = $(this).parent().parent().parent().parent().parent().find('.sum_price');
+			if (newVal >= 1) sum_price.text('Rp '+rubah((parseInt(sum_price_value.val(), 10))-(parseInt(divPrice.val(), 10))));
+			if (newVal >= 1) sum_price_value.val((parseInt(sum_price_value.val(), 10))-(parseInt(divPrice.val(), 10)));
+			
 		});
 	</script>
 	<!--quantity-->

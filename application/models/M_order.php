@@ -15,5 +15,8 @@ class M_order extends CI_Model{
 		$this->db->insert('order', $data);
 		return $this->db->insert_id();
 	}
+	public function get_order($where){
+		return $this->db->get_where('order', $where);	
+	}
 }
 ?>

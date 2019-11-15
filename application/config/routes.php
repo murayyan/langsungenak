@@ -56,7 +56,9 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'authentication/login';
 $route['register'] = 'authentication/register';
 $route['logout'] = 'authentication/logout';
+$route['pesanan'] = 'home/pesanan';
 $route['checkout'] = 'home/checkout';
+$route['payment'] = 'home/payment';
 
 $route['admin'] = 'authentication/admin_login';
 $route['admin/login'] = 'authentication/admin_login';
@@ -65,5 +67,5 @@ $route['admin/dashboard'] = 'admin/dashboard/dashboard';
 $route['admin/data_user'] = 'admin/register/data_user';
 $route['admin/register'] = 'admin/register/register';
 $route['admin/data_produk'] = 'admin/produk/data_produk';
-$route['admin/produk'] = 'admin/produk/add_produk';
-$route['admin/produk/(:num)'] = 'admin/produk/edit_produk/$1';
+$route['admin/add_produk'] = 'admin/produk/add_produk';
+$route['admin/edit_produk/(:num)'] = 'admin/produk/edit_produk/$1';

@@ -63,7 +63,8 @@
 										<div class="quantity-select">
 											<div class="entry value-minus">&nbsp;</div>
 											<input type="number" style="margin:0;" class="number" name="jumlah[]" value="<?= $items['qty'] ?>" min="0" />
-											<input type="text"  style="margin:0;" class="price" name="harga[]" value="<?= $items['qty']*$items['price'] ?>" />
+											<input type="hidden"  style="margin:0;" class="price" value="<?= $items['price'] ?>" />
+											<input type="hidden"  style="margin:0;" class="total_price" name="total_harga[]" value="<?= $items['qty']*$items['price'] ?>" />
 											<div class="entry value-plus active">&nbsp;</div>
 											<?= form_hidden('id[]', $items['id']);?>
 											<?= form_hidden('nama[]', $items['name']);?>
@@ -71,7 +72,7 @@
 										</div>
 									</div>
 								</td>
-								<td class="invert" id="tot_harga_item"></td>
+								<td class="invert tot_harga" id="tot_harga_item">Rp <?= number_format($items['qty']*$items['price'],0,",",".") ?></td>
 								<td class="invert">
 									<div class="rem">
 										<div class="close1"> </div>
@@ -81,12 +82,10 @@
 							<?php $i++; }} ?>
 							<tr class="rem1" height="60">
 								<td class="invert" colspan="3">Total</td>
-								
-								<td class="invert"><?= $this->cart->total_items()?></td>
-								<?= form_hidden('jumlah_order', $this->cart->total_items());?>
-								<td class="invert">Rp <?= number_format($this->cart->total(),0,",",".") ?></td>
-								<?= form_hidden('total_harga',$this->cart->total());?>
+								<td class="invert sum_item"><?= $this->cart->total_items()?></td>
+								<td class="invert sum_price">Rp <?= number_format($this->cart->total(),0,",",".") ?></td>
 								<td class="invert">
+								<input type="hidden" style="margin:0;" class="total_prices" value="<?= $this->cart->total() ?>" />
 								<?= form_hidden('id_customer', $this->session->userdata('id'));?>
 								</td>
 							</tr>

@@ -69,7 +69,7 @@ class Produk extends CI_Controller {
 		}
 	}
 
-	private function edit_produk($id)
+	public function edit_produk($id)
 	{
 		$this->authentication();
 		$this->form_validation->set_rules('nama_produk', 'Nama Produk', 'trim|required');

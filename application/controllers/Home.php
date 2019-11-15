@@ -19,6 +19,15 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('checkout');
 	}
+	public function payment()
+	{
+		$this->load->view('payment');
+	}
+	public function pesanan()
+	{	
+		$data['pesanan'] = $this->M_order->get_order(['customer' => $this->session->userdata('id')])->result_array();
+		$this->load->view('pesanan',$data);
+	}
 
 	public function katalog()
 	{
@@ -30,7 +39,7 @@ class Home extends CI_Controller {
 	{
 		$id_produk = $this->input->post('id');
 		$jumlah = $this->input->post('jumlah');
-		$data = $this->M_produk->get_produk($id_produk)->row();
+		$data = $this->M_produk->getProduk(['id' => $id_produk])->row();
 		$cart = array(
 			'id'  => $data->id,
 			'qty' => $jumlah,
@@ -47,11 +56,15 @@ class Home extends CI_Controller {
 		$id_produk = $this->input->post('id');
 		$nama_produk = $this->input->post('nama');
 		$jumlah_item = $this->input->post('jumlah');
-		$harga = $this->input->post('harga');
+		$harga = $this->input->post('total_harga');
+		$jml_item = 0;
+		$jml_harga = 0;
+		foreach ($jumlah_item as $key => $n) {
+			$jml_item+=$jumlah_item[$key];
+			$jml_harga+=$harga[$key];
+		}
 		
 		$id_customer = $this->input->post('id_customer');
-		$jumlah_order = $this->input->post('jumlah_order');
-		$total_harga = $this->input->post('total_harga');
 		$alamat = $this->input->post('alamat');
 		$telp = $this->input->post('telp');
 		$tgl = $this->input->post('tanggal');
@@ -59,10 +72,11 @@ class Home extends CI_Controller {
 			'customer' => $id_customer,
 			'no_hp' => $telp,
 			'alamat' => $alamat,
+			'waktu_pesan' => date("Y-m-d"),
 			'waktu_kirim' =>$tgl,
-			'jumlah' => $jumlah_order,
-			'total_harga' => $total_harga,
-			'status' => 'Belum terkirim'
+			'jumlah' => $jml_item,
+			'total_harga' => $jml_harga,
+			'status' => 'Menunggu Pembayaran'
 		);
 		$id_order = $this->M_order->set_order($data);
 		foreach ($id_produk as $key => $n) {
@@ -73,7 +87,9 @@ class Home extends CI_Controller {
 				'total_harga'=>$harga[$key]
 			);
 			$this->M_detail_order->set_detail_order($data2);
+			$this->cart->destroy();
 		}
+		redirect('payment');
 		
 	}
 }
