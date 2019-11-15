@@ -58,7 +58,7 @@ $route['register'] = 'authentication/register';
 $route['logout'] = 'authentication/logout';
 $route['pesanan'] = 'home/pesanan';
 $route['checkout'] = 'home/checkout';
-$route['payment'] = 'home/payment';
+$route['payment/(:num)'] = 'home/payment/$1';
 
 $route['admin'] = 'authentication/admin_login';
 $route['admin/login'] = 'authentication/admin_login';

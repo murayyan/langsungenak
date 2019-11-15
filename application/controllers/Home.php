@@ -8,6 +8,7 @@ class Home extends CI_Controller {
         $this->load->model('M_produk');
         $this->load->model('M_order');
         $this->load->model('M_detail_order');
+        $this->load->model('M_pembayaran');
 	}
 
 	public function index()
@@ -19,10 +20,39 @@ class Home extends CI_Controller {
 	{
 		$this->load->view('checkout');
 	}
-	public function payment()
+	public function payment($invoice)
 	{
-		$this->load->view('payment');
+		$data['pesanan'] = $this->M_order->get_order(['id' => $invoice])->result_array();
+		$this->load->view('payment', $data);
 	}
+	public function make_payment()
+	{
+		$id_order = $this->input->post('id_order');
+		$no_rek = $this->input->post('no_rek');
+		$nama_rek = $this->input->post('nama_rek');
+		$bank_rek = $this->input->post('bank_rek');
+		$bank_tujuan = $this->input->post('bank_tujuan');
+		$filename = time() . '_' . substr(str_replace(' ', '_', $_FILES['bukti']['name']), -12);
+		$config = [
+			'file_name' 	=> $filename,
+			'upload_path' 	=> 'assets/images/bukti',
+			'allowed_types'	=> 'jpg|jpeg|png',
+			'max_size' 		=> '10000'
+		];
+		$data = [
+			'id_order' 		=> $id_order,
+			'no_rekening' 	=> $nama_rek,
+			'bank_rekening'	=> $bank_rek,
+			'bank_tujuan' 	=> $bank_tujuan,
+			'file' 			=> $filename
+		];
+
+		$this->load->library('upload', $config);
+		$this->upload->do_upload('bukti');
+		$this->M_pembayaran->add_bukti($data);
+		redirect(base_url('pesanan'));
+	}
+
 	public function pesanan()
 	{	
 		$data['pesanan'] = $this->M_order->get_order(['customer' => $this->session->userdata('id')])->result_array();

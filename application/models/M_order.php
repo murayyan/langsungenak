@@ -16,7 +16,8 @@ class M_order extends CI_Model{
 		return $this->db->insert_id();
 	}
 	public function get_order($where){
-		return $this->db->get_where('order', $where);	
+		$this->db->order_by('waktu_pesan', 'DESC');	
+		return $this->db->get_where('order', $where);
 	}
 }
 ?>
