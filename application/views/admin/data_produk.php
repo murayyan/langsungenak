@@ -26,7 +26,7 @@ include 'header.php';
               </div>
               <div class="card-body">
               <?= $this->session->flashdata('message')?>
-              <a href="<?= base_url('admin/add_produk')?>" class="btn btn-success swalDefaultSuccess mb-3">
+              <a href="<?= base_url('admin/produk')?>" class="btn btn-success swalDefaultSuccess mb-3">
                   <i class="fa fa-plus"></i> Tambah Produk
                   </a>
                 <table id="example1" class="table table-bordered table-striped">
@@ -55,7 +55,7 @@ include 'header.php';
                       </div>
                     </td>
                     <td>
-                      <a href="<?= base_url('admin/edit_produk/'.$produk['id'])?>" class="btn btn-sm btn-success">Edit</a>
+                      <a href="<?= base_url('admin/produk/'.$produk['id'])?>" class="btn btn-sm btn-success">Edit</a>
                       <a href="" class="btn btn-sm btn-danger">Delete</a>
                     </td>
                   </tr>
