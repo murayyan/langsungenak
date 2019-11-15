@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Okt 2019 pada 14.26
+-- Waktu pembuatan: 15 Nov 2019 pada 06.18
 -- Versi server: 10.3.16-MariaDB
 -- Versi PHP: 7.3.7
 
@@ -81,7 +81,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `nama`, `email`, `password`, `alamat`, `nohp`, `is_active`) VALUES
-(9, 'Muhammad Rayyan', 'rayyan@gmail.com', '$2y$10$uATM12M.pUo1LQ4RkCk/EuxyNXQxaaR99tR1oFy08TemiJpSp1qR.', 'Jl. Veteran', '08128912', 'active'),
+(9, 'Muhammad Rayyan', 'rayyan@gmail.com', '$2y$10$SzOTi1IUZILPf7T1v0FJYeirLuOveX7Eljg10ss/4uhKj7E49Gk2e', 'Jl. Veteran', '08128912', 'active'),
 (10, 'Muhammad Rayyan', 'muhakiem@gmail.com', '$2y$10$hsEbvzEBS0iSJDh8J1iiMOr4ZrzG9NR6I.Cqm1Er9wdeIvtanH97u', 'Jl. Gunung', '0857480095521', 'active');
 
 -- --------------------------------------------------------
@@ -97,6 +97,14 @@ CREATE TABLE `detail_order` (
   `jumlah` int(11) NOT NULL,
   `total_harga` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `detail_order`
+--
+
+INSERT INTO `detail_order` (`id`, `id_order`, `nama_produk`, `jumlah`, `total_harga`) VALUES
+(15, 16, 'roti curut', 4, 24000),
+(16, 17, 'roti boy', 3, 150000);
 
 -- --------------------------------------------------------
 
@@ -124,9 +132,20 @@ CREATE TABLE `order` (
   `customer` int(11) NOT NULL,
   `no_hp` varchar(15) NOT NULL,
   `alamat` varchar(255) NOT NULL,
-  `waktu_kirim` datetime NOT NULL,
-  `status` enum('belum terkirim','terkirim') NOT NULL
+  `waktu_pesan` date NOT NULL,
+  `waktu_kirim` date NOT NULL,
+  `jumlah` int(5) NOT NULL,
+  `total_harga` int(20) NOT NULL,
+  `status` enum('Belum Dikirim','Terkirim','Menunggu Pembayaran','Pembayaran Diterima','Produksi') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `order`
+--
+
+INSERT INTO `order` (`id`, `customer`, `no_hp`, `alamat`, `waktu_pesan`, `waktu_kirim`, `jumlah`, `total_harga`, `status`) VALUES
+(16, 9, '081338423751', 'Jl. Veteran', '2019-11-20', '2019-11-16', 4, 24000, 'Menunggu Pembayaran'),
+(17, 9, '081338423751', 'Malang, Sawojajar', '2019-11-15', '2019-11-16', 3, 150000, 'Menunggu Pembayaran');
 
 -- --------------------------------------------------------
 
@@ -154,6 +173,14 @@ CREATE TABLE `produk` (
   `harga` int(15) NOT NULL,
   `gambar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `produk`
+--
+
+INSERT INTO `produk` (`id`, `nama_produk`, `deskripsi`, `kategori`, `harga`, `gambar`) VALUES
+(1, 'roti curut', 'enak deh', 'Roti Gal', 6000, 'roti1.jpg'),
+(2, 'roti boy', 'awewfewaef', 'Roti Boy', 50000, '1573114367_roti1.jpg');
 
 --
 -- Indexes for dumped tables
@@ -233,7 +260,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT untuk tabel `detail_order`
 --
 ALTER TABLE `detail_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal_antar`
@@ -245,7 +272,7 @@ ALTER TABLE `jadwal_antar`
 -- AUTO_INCREMENT untuk tabel `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengantar`
@@ -257,7 +284,7 @@ ALTER TABLE `pengantar`
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
