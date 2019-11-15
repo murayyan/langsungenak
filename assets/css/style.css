@@ -7,6 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 html,
 body {
 	margin: 0;
+	height: 100%;
 	font-size: 100%;
 	background: #fff;
 	font-family: 'Open Sans', sans-serif;
@@ -1202,6 +1203,7 @@ footer,
 .banner-bootom-w3-agileits,
 .privacy {
 	padding: 1em 0;
+	min-height: 100%;
 }
 
 /*-- tittle heading --*/
@@ -2956,7 +2958,7 @@ td.invert-image a img {
 button.submit.check_out {
 	padding: 12px 25px;
 	letter-spacing: 1px;
-	background: #1accfd;
+	background: #000000;
 	font-size: 16px;
 	color: #fff;
 	border: none;
@@ -2970,7 +2972,7 @@ button.submit.check_out {
 }
 
 button.submit.check_out:hover {
-	background: #FF5722;
+	background: rgb(0, 0, 0);
 	transition: 0.5s all;
 	-webkit-transition: 0.5s all;
 	-moz-transition: 0.5s all;

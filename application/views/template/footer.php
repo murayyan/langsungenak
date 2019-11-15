@@ -9,11 +9,27 @@
 
 	<!-- js-files -->
 	<!-- jquery -->
-	<script src="<?php echo base_url('assets/js/jquery-2.1.4.min.js')?>"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<link href="<?= base_url('assets/css/datepicker.min.css')?>" rel="stylesheet" type="text/css">
+        <script src="<?= base_url('assets/js/datepicker.min.js')?>"></script>
+
+        <!-- Include English language -->
+        <script src="<?= base_url('assets/js/datepicker.en.js')?>"></script>
+	
 	<!-- //jquery -->
 
 	<!-- popup modal (for signin & signup)-->
 	<script src="<?php echo base_url('assets/js/jquery.magnific-popup.js')?>"></script>
+	<script>
+$(function() {
+  $('input[name="tgl"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 2019,
+	endDate: "today"
+  });
+});
+</script>
 	<script>
 		$(document).ready(function () {
 			$('.popup-with-zoom-anim').magnificPopup({
@@ -80,10 +96,20 @@
 
 	<!--quantity-->
 	<script>
+		 function rubah(angka){
+			var reverse = angka.toString().split('').reverse().join(''),
+			ribuan = reverse.match(/\d{1,3}/g);
+			ribuan = ribuan.join('.').split('').reverse().join('');
+			return ribuan;
+			}
 		$('.value-plus').on('click', function () {
-			var divUpd = $(this).parent().find('.number'),
-				newVal = parseInt(divUpd.val(), 10) + 1;
-			divUpd.val(newVal);
+			var divUpd = $(this).parent().find('.number');
+			var divTot = $(this).parent().find('.price');
+			var harga_satuan = parseInt(divTot.val(), 10)/parseInt(divUpd.val(), 10);
+			var	newVal = parseInt(divUpd.val(), 10) + 1;
+				divUpd.val(newVal);
+				divTot.val(newVal*harga_satuan);
+				$('#tot_harga_item').text('Rp '+rubah(newVal*harga_satuan));
 		});
 
 		$('.value-minus').on('click', function () {
