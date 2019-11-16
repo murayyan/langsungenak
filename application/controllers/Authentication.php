@@ -1,44 +1,52 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Authentication extends CI_Controller {
-	 
-	public function __construct(){
+class Authentication extends CI_Controller
+{
+
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->library('form_validation');
 		$this->load->model('M_customer');
 		$this->load->model('M_admin');
 	}
-	
-	public function authentication(){
-		if ($this->session->userdata('login')!='customer') {
+
+	public function authentication()
+	{
+		if ($this->session->userdata('login') != 'customer') {
 			redirect('login');
 		}
 	}
 
-	public function register(){
-		if ($this->session->userdata('login')=='customer') {
+	public function register()
+	{
+		if ($this->session->userdata('login') == 'customer') {
 			redirect(base_url());
 		}
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|valid_email|is_unique[customer.email]',['is_unique' => 'This email has already registered']);
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|matches[password2]',[
-			'matches'=>'Password don\'t match',
-			'min_length'=>'Password too short']);
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|valid_email|is_unique[customer.email]', ['is_unique' => 'This email has already registered']);
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|matches[password2]', [
+			'matches' => 'Password don\'t match',
+			'min_length' => 'Password too short'
+		]);
 		$this->form_validation->set_rules('password2', 'Password', 'trim|required|matches[password]', [
-			'matches'=>'Password don\'t match']);
+			'matches' => 'Password don\'t match'
+		]);
 		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('nohp', 'No. HP', 'trim|required|numeric');
 		if ($this->form_validation->run() == false) {
 			# code...
 			$this->load->view('register');
-		}else{
+		} else {
 			$data = [
 				'nama' => $this->input->post('nama'),
 				'email' => $this->input->post('email'),
 				'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
 				'alamat' => $this->input->post('alamat'),
 				'nohp' => $this->input->post('nohp'),
+				'kapasitas_max' => 50,
+				'kapasitas_min' => 25,
 				'is_active' => 'active'
 			];
 
@@ -48,75 +56,80 @@ class Authentication extends CI_Controller {
 		}
 	}
 
-	public function login(){
-		if ($this->session->userdata('login')=='customer') {
+	public function login()
+	{
+		if ($this->session->userdata('login') == 'customer') {
 			redirect(base_url());
 		}
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
-		
+
 		if ($this->form_validation->run() == false) {
 			# code...
 			$this->load->view('login');
-		}else{
+		} else {
 			$this->_cek_login();
 		}
 	}
 
-	private function _cek_login(){
+	private function _cek_login()
+	{
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
-		$user = $this->M_customer->cek_user(['email'=>$email])->row_array();
-		
+		$user = $this->M_customer->cek_user(['email' => $email])->row_array();
+
 		if ($user) {
-			if(password_verify($password, $user['password'])){
+			if (password_verify($password, $user['password'])) {
 				$sess = [
-					'email'=>$user['email'],
-					'nama'=>$user['nama'],
-					'id'=>$user['id'],
-					'login'=>'customer'
+					'email' => $user['email'],
+					'nama' => $user['nama'],
+					'id' => $user['id'],
+					'max' => $user['kapasitas_max'],
+					'min' => $user['kapasitas_min'],
+					'login' => 'customer'
 				];
 				$this->session->set_userdata($sess);
 				redirect(base_url());
-			}else{
+			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Salah!</div>');
 				redirect('login');
 			}
-		}else{
-			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email tidak terdaftar!</div>');	
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email tidak terdaftar!</div>');
 			redirect('login');
 		}
-
 	}
 
 	function logout()
-    {
-        $this->session->sess_destroy();
-        redirect(base_url('login'));
+	{
+		$this->session->sess_destroy();
+		redirect(base_url('login'));
 	}
-	
+
 	// ---------------------------------------------------------------------//
 	//-------------------------ADMIN AUTHENTICATION-------------------------//
 	// ---------------------------------------------------------------------//
 
 	public function admin_register()
 	{
-		if ($this->session->userdata('login')=='admin') {
+		if ($this->session->userdata('login') == 'admin') {
 			redirect(base_url('admin'));
 		}
 		$this->form_validation->set_rules('nama', 'Nama', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|valid_email|is_unique[customer.email]',['is_unique' => 'This email has already registered']);
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|matches[password2]',[
-			'matches'=>'Password don\'t match',
-			'min_length'=>'Password too short']);
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|valid_email|is_unique[customer.email]', ['is_unique' => 'This email has already registered']);
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|matches[password2]', [
+			'matches' => 'Password don\'t match',
+			'min_length' => 'Password too short'
+		]);
 		$this->form_validation->set_rules('password2', 'Password', 'trim|required|matches[password]', [
-			'matches'=>'Password don\'t match']);
+			'matches' => 'Password don\'t match'
+		]);
 		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('nohp', 'No. HP', 'trim|required|numeric');
 		if ($this->form_validation->run() == false) {
 			# code...
 			$this->load->view('register');
-		}else{
+		} else {
 			$data = [
 				'nama' => $this->input->post('nama'),
 				'email' => $this->input->post('email'),
@@ -134,49 +147,48 @@ class Authentication extends CI_Controller {
 
 	public function admin_login()
 	{
-		if ($this->session->userdata('login')=='admin') {
+		if ($this->session->userdata('login') == 'admin') {
 			redirect(base_url('admin/dashboard'));
 		}
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
-		
+
 		if ($this->form_validation->run() == false) {
 			# code...
 			$this->load->view('admin/login');
-		}else{
+		} else {
 			$this->_cek_login_admin();
 		}
 	}
 
-	private function _cek_login_admin(){
+	private function _cek_login_admin()
+	{
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
-		$user = $this->M_admin->cek_admin(['email'=>$email])->row_array();
-		
+		$user = $this->M_admin->cek_admin(['email' => $email])->row_array();
+
 		if ($user) {
-			if(password_verify($password, $user['password'])){
+			if (password_verify($password, $user['password'])) {
 				$sess = [
-					'level'=>$user['level'],
-					'nama'=>$user['nama'],
-					'login'=>'admin'
+					'level' => $user['level'],
+					'nama' => $user['nama'],
+					'login' => 'admin'
 				];
 				$this->session->set_userdata($sess);
 				redirect(base_url('admin/dashboard'));
-			}else{
+			} else {
 				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password Salah!</div>');
 				redirect('admin/login');
 			}
-		}else{
-			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email tidak terdaftar!</div>');	
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email tidak terdaftar!</div>');
 			redirect('admin/login');
 		}
-
 	}
 
 	function admin_logout()
-    {
-        $this->session->sess_destroy();
-        redirect(base_url('admin/login'));
+	{
+		$this->session->sess_destroy();
+		redirect(base_url('admin/login'));
 	}
-
 }
