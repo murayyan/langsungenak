@@ -12,11 +12,13 @@ class M_order extends CI_Model
 	private $total_harga;
 	private $status;
 
-	public function data_order(){
+	public function data_order()
+	{
 		return $this->db->get('order');
 	}
 
-	public function set_order($data){
+	public function set_order($data)
+	{
 		$this->db->insert('order', $data);
 		return $this->db->insert_id();
 	}
@@ -31,6 +33,7 @@ class M_order extends CI_Model
 	public function get_order($where)
 	{
 		$this->db->order_by('waktu_pesan', 'DESC');
+		$this->db->join('customer', 'order.customer = customer.id');
 		return $this->db->get_where('order', $where);
 	}
 }
