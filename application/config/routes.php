@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -58,7 +58,8 @@ $route['register'] = 'authentication/register';
 $route['logout'] = 'authentication/logout';
 $route['pesanan'] = 'home/pesanan';
 $route['checkout'] = 'home/checkout';
-$route['payment'] = 'home/payment';
+$route['katalog'] = 'home/katalog';
+$route['payment/(:num)'] = 'home/payment/$1';
 
 $route['admin'] = 'authentication/admin_login';
 $route['admin/login'] = 'authentication/admin_login';

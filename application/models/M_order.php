@@ -1,6 +1,7 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class M_order extends CI_Model{
+class M_order extends CI_Model
+{
 
 	private $id;
 	private $customer;
@@ -19,8 +20,17 @@ class M_order extends CI_Model{
 		$this->db->insert('order', $data);
 		return $this->db->insert_id();
 	}
-	public function get_order($where){
-		return $this->db->get_where('order', $where);	
+
+	public function change_status($id, $data)
+	{
+		$this->db->set($data);
+		$this->db->where('id', $id);
+		$this->db->update('order');
+	}
+
+	public function get_order($where)
+	{
+		$this->db->order_by('waktu_pesan', 'DESC');
+		return $this->db->get_where('order', $where);
 	}
 }
-?>

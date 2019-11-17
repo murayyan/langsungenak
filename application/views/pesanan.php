@@ -38,6 +38,7 @@
 								<th width="150">Jumlah</th>
 								<th width="150">Total Harga</th>
 								<th width="150">Status</th>
+								<th width="150"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -52,6 +53,9 @@
 								<td><?= $pesanan['jumlah'].' pcs'?></td>
 								<td><?= 'Rp '.number_format($pesanan['total_harga'],'0',',','.')?></td>
 								<td><?= $pesanan['status']?></td>
+								<td><a href="<?= base_url('payment/').$pesanan['id'] ?>" type="button"> <i class="fa fa-credit-card"> Bayar</i></a>
+								<a href="" type="button"> <i class="fa fa-file-text-o"> Invoice</i></a>
+								</td>
 								
 							</tr>
 						<?php $i++; } ?>

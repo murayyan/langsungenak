@@ -13,7 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script>
-		addEventListener("load", function () {
+		addEventListener("load", function() {
 			setTimeout(hideURLbar, 0);
 		}, false);
 
@@ -22,19 +22,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 	</script>
 	<!--//tags -->
-	<link href="<?php echo base_url('assets/css/bootstrap.css')?>" rel="stylesheet" type="text/css" media="all" />
-	<link href="<?php echo base_url('assets/css/style.css')?>" rel="stylesheet" type="text/css" media="all" />
-	<link href="<?php echo base_url('assets/css/button.css')?>" rel="stylesheet">
-	<link href="<?php echo base_url('assets/css/font-awesome.css')?>" rel="stylesheet">
+	<link href="<?php echo base_url('assets/css/bootstrap.css') ?>" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?php echo base_url('assets/css/style.css') ?>" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?php echo base_url('assets/css/button.css') ?>" rel="stylesheet">
+	<link href="<?php echo base_url('assets/css/font-awesome.css') ?>" rel="stylesheet">
 	<!--pop-up-box-->
-	<link href="<?php echo base_url('assets/css/popuo-box.css')?>" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?php echo base_url('assets/css/popuo-box.css') ?>" rel="stylesheet" type="text/css" media="all" />
 	<!--//pop-up-box-->
 	<!-- price range -->
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/jquery-ui1.css')?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/jquery-ui1.css') ?>">
 	<!-- fonts -->
 	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
-	
+
 </head>
+
 <body>
 	<!-- //top-header -->
 	<!-- header-bot-->
@@ -46,7 +47,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<a href="index.html">
 						<span>L</span>angsung
 						<span>E</span>nak
-						<img src="<?php echo base_url('assets/images/logo2.png')?>" alt=" ">
+						<img src="<?php echo base_url('assets/images/logo2.png') ?>" alt=" ">
 					</a>
 				</h1>
 			</div>
@@ -54,56 +55,56 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<br>
 			<div class="col-md-8 header">
 				<!-- header lists -->
-				<?php if($this->session->userdata('email')==NULL) { ?>
+				<?php if ($this->session->userdata('email') == NULL) { ?>
 					<ul>
-					<li>
-						<a class="nav-stylehead" href="index.html">Home</a>
-					</li>
-					<li class="">
-						<a class="nav-stylehead" href="about.html">Katalog</a>
-					</li>
-					<li class="">
-						<a class="nav-stylehead" href="faqs.html">Pesanan</a>
-					</li>
-					<!-- <li class="">
+						<li>
+							<a class="nav-stylehead" href="#">Home</a>
+						</li>
+						<li class="">
+							<a class="nav-stylehead" href="#">Katalog</a>
+						</li>
+						<li class="">
+							<a class="nav-stylehead" href="#">Pesanan</a>
+						</li>
+						<!-- <li class="">
 						<a class="nav-stylehead" href="faqs.html">Profil</a>
 					</li> -->
-					<li>
-						<a href="<?= base_url('login')?>">
-							<span class="fa fa-unlock-alt" aria-hidden="true"></span> Log In </a>
-					</li>
-					<li>
-						<a href="<?= base_url('register')?>">
-							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Register </a>
-					</li>
-				</ul>
-				<?php }else{ ?>
-				
-				<ul>
-					
-					<li class="">
-						<a class="nav-stylehead" href="<?= base_url()?>">Katalog</a>
-					</li>
-					<li class="">
-						<a class="nav-stylehead" href="<?= base_url('pesanan')?>">Pesanan</a>
-					</li>
-					<li class="">
-						<a class="nav-stylehead" href="faqs.html">Profil</a>
-					</li>
-					<li>
-							
+						<li>
+							<a href="<?= base_url('login') ?>">
+								<span class="fa fa-unlock-alt" aria-hidden="true"></span> Log In </a>
+						</li>
+						<li>
+							<a href="<?= base_url('register') ?>">
+								<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Register </a>
+						</li>
+					</ul>
+				<?php } else { ?>
+
+					<ul>
+
+						<li class="">
+							<a class="nav-stylehead" href="<?= base_url() ?>">Katalog</a>
+						</li>
+						<li class="">
+							<a class="nav-stylehead" href="<?= base_url('pesanan') ?>">Pesanan</a>
+						</li>
+						<li class="">
+							<a class="nav-stylehead" href="#">Profil</a>
+						</li>
+						<li>
+
 							<input type="hidden" name="cmd" value="_cart">
 							<input type="hidden" name="display" value="1">
-							<a href="<?= base_url('checkout')?>" class="w3view-cart" type="submit" name="submit" value="">
+							<a href="<?= base_url('checkout') ?>" class="w3view-cart" type="submit" name="submit" value="">
 								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-							(<?= $this->cart->total_items()?>)
+								(<?= $this->cart->total_items() ?>)
 							</a>
-					</li>
-					<li>
-						<a href="<?= base_url('logout')?>"><span class="fa fa-unlock-alt" aria-hidden="true"></span> Log Out </a>
-					</li>
-				
-				</ul>
+						</li>
+						<li>
+							<a href="<?= base_url('logout') ?>"><span class="fa fa-unlock-alt" aria-hidden="true"></span> Log Out </a>
+						</li>
+
+					</ul>
 				<?php } ?>
 
 				<!-- //header lists -->
@@ -132,9 +133,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 					<div class="modal_body_left modal_body_left1">
 						<h3 class="agileinfo_sign">Log In </h3>
-						
+
 						<form action="#" method="post">
-							<div class="styled-input agile-styled-input-top">	
+							<div class="styled-input agile-styled-input-top">
 								<input type="text" placeholder="User Name" name="Name" required="">
 							</div>
 							<div class="styled-input">
@@ -167,7 +168,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 					<div class="modal_body_left modal_body_left1">
 						<h3 class="agileinfo_sign">Sign Up</h3>
-						
+
 						<form action="<?= base_url('authentication/do_register') ?>" method="post">
 							<div class="styled-input agile-styled-input-top">
 								<input type="text" placeholder="Nama" name="nama" required="">
@@ -176,20 +177,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<input type="email" placeholder="E-mail" name="email" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Password" name="password" id="password1"
-									required="">
+								<input type="password" placeholder="Password" name="password" id="password1" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Confirm Password" name="confirm"
-									id="password2" required="">
+								<input type="password" placeholder="Confirm Password" name="confirm" id="password2" required="">
 							</div>
 							<div class="styled-input">
-								<input type="text" placeholder="Alamat" name="alamat"
-									id="alamat" required="">
+								<input type="text" placeholder="Alamat" name="alamat" id="alamat" required="">
 							</div>
 							<div class="styled-input">
-								<input type="text" placeholder="No. HP" name="nohp"
-									id="nohp" required="">
+								<input type="text" placeholder="No. HP" name="nohp" id="nohp" required="">
 							</div>
 							<input type="submit" value="Sign Up">
 						</form>

@@ -12,8 +12,7 @@ class M_customer extends CI_Model{
 	public function register($data){
 		$this->db->insert('customer', $data);
 	}
-	public function cek_user($email){
-		return $this->db->get_where('customer', $email);
+	public function cek_user($where){
+		return $this->db->get_where('customer', $where);
 	}
 }
-?>

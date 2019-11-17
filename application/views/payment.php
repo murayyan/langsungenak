@@ -22,8 +22,8 @@
 							<div id="tab1" class="tab-grid" style="display: block;">
 								<div class="row">
 									<div class="col-md-6">
-                                    <div class="vertical_post">
-									<h5>Total transfer Rp 400.000</h5>
+                                    <div class="vertical_post"><?php foreach ($pesanan as $pesanan) {}?>
+									<h5>Total transfer Rp <?= number_format($pesanan['total_harga'],0,',','.') ?></h5>
 									<div class="swit-radio">
 										<div class="check_box_one">
 											<div class="radio_one">
@@ -57,34 +57,38 @@
 							</div>
 									</div>
 									<div class="col-md-6 number-paymk">
-										<form class="cc-form">
+										<form class="cc-form" action="<?= base_url('home/make_payment')?>" method="post" enctype="multipart/form-data">
 											<div class="clearfix">
 												<div class="form-group form-group-cc-number">
 													<label>No Rekening Pengirim</label>
-													<input class="form-control" placeholder="Contoh: 901200901" type="text">
+													<input class="form-control" name="no_rek" placeholder="Contoh: 901200901" type="text" required>
 													<span class="cc-card-icon"></span>
 												</div>
 												<div class="form-group form-group-cc-cvc">
 													<label>Nama Rekening Pengirim</label>
-													<input class="form-control" placeholder="Contoh: Maulidiya Qurrota" type="text">
+													<input class="form-control" name="nama_rek" placeholder="Contoh: Maulidiya Qurrota" type="text" required>
 												</div>
 											</div>
 											<div class="clearfix">
 												<div class="form-group form-group-cc-name">
 													<label>Bank Rekening Pengirim</label>
-													<input class="form-control" type="text">
+													<input class="form-control" name="bank_rek" placeholder="Contoh: Mandiri" type="text" required>
 												</div>
 												<div class="form-group form-group-cc-date">
 													<label>Bank Tujuan</label>
-													<select class="form-control" name="bank_tujuan" id="bank_tujuan">
+													<select class="form-control" name="bank_tujuan" id="bank_tujuan" required>
                                                         <option value="BCA">BCA - 12345678 a/n Maulidiya Qurrota</option>
                                                         <option value="BRI">BRI - 12345678 a/n Maulidiya Qurrota</option>
                                                         <option value="Mandiri">Mandiri - 12345678 a/n Maulidiya Qurrota</option>
                                                         <option value="BNI">BNI - 12345678 a/n Maulidiya Qurrota</option>
                                                     </select>
 												</div>
+												<div class="form-group form-group-cc-name">
+													<label>Bukti Pembayaran</label>
+													<input class="form-control" name="bukti" placeholder="Contoh: Mandiri" type="file">
+												</div>
 											</div>
-											
+											<?= form_hidden('id_order', $pesanan['id']);?>
 											<input type="submit" class="submit" value="Kirim Bukti Pembayaran">
 										</form>
 									</div>
