@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>AdminLTE 3 | Dashboard 2</title>
+  <title>Admin | Langsung Enak</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/plugins/fontawesome-free/css/all.min.css')?>">
@@ -84,7 +84,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link <?php echo $page=='pesanan'?'active':''; ?>">
+            <a href="<?= base_url('admin/data_pesanan');?>" class="nav-link <?php echo $page=='pesanan'?'active':''; ?>">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Pesanan

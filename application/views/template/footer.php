@@ -240,12 +240,6 @@ $(function() {
 	<script src="<?php echo base_url('assets/js/bootstrap.js')?>"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
-	<script>
-		function deleteData(id, nama) {
-			document.getElementById('idHapus').value = id
-			document.getElementById("kalimatHapus").innerHTML = "Yakin mau hapus personel \"" + nama + "\" secara permanen ?"
-		}
-	</script>
 
 </body>
 

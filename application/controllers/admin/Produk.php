@@ -125,4 +125,18 @@ class Produk extends CI_Controller {
 		}
 	}
 
+	public function deleteProduk()
+	{
+		$input = $this->input->post();
+		// hapus file foto cover lama
+		$data = $this->db->get_where('produk', ['id' => $input['id']])->row(); // ambil data produk
+
+		$old_gambar = $data->gambar;
+		// hapus foto produk
+		unlink('./assets/uploads/personel_photos/' . $dataFotoLama);
+		// delete dari database
+		$this->db->delete('produk', ['id' => $input['id']]);
+		redirect(base_url('admin/data_produk'));
+	}
+
 }

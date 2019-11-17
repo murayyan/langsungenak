@@ -69,3 +69,4 @@ $route['admin/register'] = 'admin/register/register';
 $route['admin/data_produk'] = 'admin/produk/data_produk';
 $route['admin/produk'] = 'admin/produk/add_produk';
 $route['admin/produk/(:num)'] = 'admin/produk/edit_produk/$1';
+$route['admin/data_pesanan'] = 'admin/pesanan/data_pesanan';

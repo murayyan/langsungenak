@@ -37,9 +37,14 @@
 <!-- PAGE SCRIPTS -->
 <script src="<?php echo base_url('assets/admin/dist/js/pages/dashboard2.js')?>"></script>
 <script>
-function goBack() {
-  window.history.back();
-}
+  function goBack() {
+    window.history.back();
+  }
+  
+  function deleteData(id, nama) {
+    document.getElementById('idHapus').value = id
+    document.getElementById("kalimatHapus").innerHTML = "Yakin ingin hapus produk \"" + nama + "\"  ?"
+  }
 </script>
 </body>
 </html>

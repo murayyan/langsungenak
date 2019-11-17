@@ -11,6 +11,10 @@ class M_order extends CI_Model{
 	private $total_harga;
 	private $status;
 
+	public function data_order(){
+		return $this->db->get('order');
+	}
+
 	public function set_order($data){
 		$this->db->insert('order', $data);
 		return $this->db->insert_id();

@@ -56,7 +56,9 @@ include 'header.php';
                     </td>
                     <td>
                       <a href="<?= base_url('admin/produk/'.$produk['id'])?>" class="btn btn-sm btn-success">Edit</a>
-                      <a href="" class="btn btn-sm btn-danger">Delete</a>
+                      <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapusProduk" onclick="deleteData(<?= $produk['id'] ?>, '<?= $produk['nama_produk'] ?>')">
+                        <i class="fa fa-trash"></i> Delete
+                      </button>
                     </td>
                   </tr>
                   <?php $no++; } ?>
@@ -73,6 +75,32 @@ include 'header.php';
     </section>
   </div>
   <!-- /.content-wrapper -->
+  <!-- modal -->
+  <div class="modal fade" id="hapusProduk">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Hapus Produk</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+        </div>
+
+        <form action="<?= base_url('admin/produk/deleteProduk') ?>" method="post">
+          <div class="modal-body">
+            <p id="kalimatHapus"></p>
+            <input type="hidden" name="id" id="idHapus">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
 
   <!-- /.control-sidebar -->
   <?php include 'footer.php';?>
