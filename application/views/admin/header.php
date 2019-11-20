@@ -109,6 +109,14 @@
 									</p>
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('admin/data_bahanbaku'); ?>" class="nav-link <?php echo $page == 'bahan' ? 'active' : ''; ?>">
+									<i class="nav-icon fas fa-th"></i>
+									<p>
+										Bahan Baku
+									</p>
+								</a>
+							</li>
 						<?php } else if ($this->session->userdata('level') == 'PRODUKSI') { ?>
 							<li class="nav-item has-treeview">
 								<a href="<?= base_url('admin/dashboard'); ?>" class="nav-link <?php echo $page == 'dashboard' ? 'active' : ''; ?>">

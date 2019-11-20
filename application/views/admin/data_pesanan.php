@@ -189,7 +189,7 @@ include 'header.php';
 
 <!-- /.control-sidebar -->
 <?php include 'footer.php'; ?>
-<script>
+<!-- <script>
 	$(function() {
 		$("#example1").DataTable();
 		$('#example2').DataTable({
@@ -201,4 +201,4 @@ include 'header.php';
 			"autoWidth": false,
 		});
 	});
-</script>
+</script> -->

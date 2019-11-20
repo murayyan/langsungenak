@@ -38,6 +38,18 @@
 <!-- PAGE SCRIPTS -->
 <script src="<?php echo base_url('assets/admin/dist/js/pages/dashboard2.js') ?>"></script>
 <script>
+	$(function() {
+		$("#example1").DataTable();
+		$('#example2').DataTable({
+			"paging": true,
+			"lengthChange": false,
+			"searching": false,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+		});
+	});
+
 	function goBack() {
 		window.history.back();
 	}
