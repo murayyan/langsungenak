@@ -88,7 +88,7 @@
 													<input class="form-control" name="bukti" placeholder="Contoh: Mandiri" type="file">
 												</div>
 											</div>
-											<?= form_hidden('id_order', $pesanan['id']);?>
+											<?= form_hidden('id_pesanan', $pesanan['id']);?>
 											<input type="submit" class="submit" value="Kirim Bukti Pembayaran">
 										</form>
 									</div>

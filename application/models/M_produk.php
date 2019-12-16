@@ -27,4 +27,3 @@ class M_produk extends CI_Model{
 	}
     
 }
-?>

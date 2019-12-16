@@ -9,8 +9,8 @@ class Home extends CI_Controller
 		parent::__construct();
 		$this->load->model('M_customer');
 		$this->load->model('M_produk');
-		$this->load->model('M_order');
-		$this->load->model('M_detail_order');
+		$this->load->model('M_pesanan');
+		$this->load->model('M_detail_pesanan');
 		$this->load->model('M_pembayaran');
 	}
 
@@ -25,12 +25,12 @@ class Home extends CI_Controller
 	}
 	public function payment($invoice)
 	{
-		$data['pesanan'] = $this->M_order->get_order(['id' => $invoice])->result_array();
+		$data['pesanan'] = $this->M_pesanan->get_pesanan(['pesanan.id' => $invoice])->result_array();
 		$this->load->view('payment', $data);
 	}
 	public function make_payment()
 	{
-		$id_order = $this->input->post('id_order');
+		$id_pesanan = $this->input->post('id_pesanan');
 		$no_rek = $this->input->post('no_rek');
 		$nama_rek = $this->input->post('nama_rek');
 		$bank_rek = $this->input->post('bank_rek');
@@ -43,7 +43,7 @@ class Home extends CI_Controller
 			'max_size' 		=> '10000'
 		];
 		$data = [
-			'id_order' 		=> $id_order,
+			'id_pesanan' 		=> $id_pesanan,
 			'no_rekening' 	=> $no_rek,
 			'nama_rekening'	=> $nama_rek,
 			'bank_rekening'	=> $bank_rek,
@@ -54,13 +54,13 @@ class Home extends CI_Controller
 		$this->load->library('upload', $config);
 		$this->upload->do_upload('bukti');
 		$this->M_pembayaran->add_bukti($data);
-		$this->M_order->change_status($id_order, ['status' => 'Menunggu Konfirmasi']);
+		$this->M_pesanan->change_status($id_pesanan, ['status' => 'Menunggu Konfirmasi']);
 		redirect(base_url('pesanan'));
 	}
 
 	public function pesanan()
 	{
-		$data['pesanan'] = $this->M_order->get_order(['customer' => $this->session->userdata('id')])->result_array();
+		$data['pesanan'] = $this->M_pesanan->get_pesanan(['customer' => $this->session->userdata('id')])->result_array();
 		$this->load->view('pesanan', $data);
 	}
 
@@ -90,7 +90,8 @@ class Home extends CI_Controller
 				'id'  => $data->id,
 				'qty' => $coming,
 				'price'   => $data->harga,
-				'name'   => $data->nama_produk
+				'name'   => $data->nama_produk,
+				'id_produk' => $data->id
 			);
 
 			$this->cart->insert($cart);
@@ -121,9 +122,6 @@ class Home extends CI_Controller
 		} else {
 			$id_produk = $this->input->post('id');
 			$nama_produk = $this->input->post('nama');
-
-
-
 			$id_customer = $this->input->post('id_customer');
 			$alamat = $this->input->post('alamat');
 			$telp = $this->input->post('telp');
@@ -138,18 +136,19 @@ class Home extends CI_Controller
 				'total_harga' => $jml_harga,
 				'status' => 'Menunggu Pembayaran'
 			);
-			$id_order = $this->M_order->set_order($data);
+			$id_pesanan = $this->M_pesanan->set_pesanan($data);
 			foreach ($id_produk as $key => $n) {
 				$data2 = array(
-					'id_order' => $id_order,
+					'id_pesanan' => $id_pesanan,
+					'id_produk' => $id_produk[$key],
 					'nama_produk' => $nama_produk[$key],
 					'jumlah' => $jumlah_item[$key],
 					'total_harga' => $harga[$key]
 				);
-				$this->M_detail_order->set_detail_order($data2);
+				$this->M_detail_pesanan->set_detail_pesanan($data2);
 				$this->cart->destroy();
 			}
-			redirect('payment/' . $id_order);
+			redirect('payment/' . $id_pesanan);
 		}
 	}
 

@@ -20,7 +20,7 @@
 <script src="<?php echo base_url('assets/admin/plugins/datatables/jquery.dataTables.js') ?>"></script>
 <script src="<?php echo base_url('assets/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.js') ?>"></script>
 <script src="<?php echo base_url('assets/admin/dist/js/adminlte.js') ?>"></script>
-
+<script src="<?php echo base_url('assets/admin/plugins/ekko-lightbox/ekko-lightbox.min.js') ?>"></script>
 <!-- OPTIONAL SCRIPTS -->
 <script src="<?php echo base_url('assets/admin/dist/js/demo.js') ?>"></script>
 <script src="<?php echo base_url('assets/admin/plugins/select2/js/select2.full.min.js') ?>"></script>
@@ -34,19 +34,24 @@
 <script src="<?php echo base_url('assets/admin/plugins/jquery-mapael/maps/world_countries.min.js') ?>"></script>
 <!-- ChartJS -->
 <script src="<?php echo base_url('assets/admin/plugins/chart.js/Chart.min.js') ?>"></script>
-
+<script src="<?php echo base_url('assets/admin/plugins/filterizr/jquery.filterizr.min.js') ?>"></script>
 <!-- PAGE SCRIPTS -->
 <script src="<?php echo base_url('assets/admin/dist/js/pages/dashboard2.js') ?>"></script>
 <script>
 	$(function() {
 		$("#example1").DataTable();
-		$('#example2').DataTable({
-			"paging": true,
-			"lengthChange": false,
-			"searching": false,
-			"ordering": true,
-			"info": true,
-			"autoWidth": false,
+		$('#example2').DataTable();
+		$("#example3").DataTable();
+		$("#example4").DataTable();
+		$("#example5").DataTable();
+
+
+		$('.filter-container').filterizr({
+			gutterPixels: 3
+		});
+		$('.btn[data-filter]').on('click', function() {
+			$('.btn[data-filter]').removeClass('active');
+			$(this).addClass('active');
 		});
 	});
 

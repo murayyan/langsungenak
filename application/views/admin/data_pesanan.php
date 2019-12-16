@@ -36,7 +36,10 @@ include 'header.php';
 									<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Sedang Diproduksi</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Selesai</a>
+									<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Menunggu Pengiriman</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="custom-content-below-settings2-tab" data-toggle="pill" href="#custom-content-below-settings2" role="tab" aria-controls="custom-content-below-settings2" aria-selected="false">Sudah Dikirim</a>
 								</li>
 							</ul>
 							<div class="tab-content" id="custom-content-below-tabContent">
@@ -57,24 +60,24 @@ include 'header.php';
 										<tbody>
 											<?php
 											$no = 1;
-											foreach ($order1 as $order1) { ?>
+											foreach ($pesanan1 as $pesanan1) { ?>
 												<tr>
 													<td><?= $no ?></td>
-													<td><?= $order1['nama'] ?></td>
-													<td><?= tanggal($order1['waktu_pesan']) ?></td>
-													<td><?= tanggal($order1['waktu_kirim']) ?></td>
-													<td align="center"><?= $order1['jumlah'] ?></td>
-													<td>Rp <?= number_format($order1['total_harga'], 0, ',', '.') ?></td>
-													<td><span class="badge bg-warning"><?= $order1['status'] ?></span></td>
-													<td> <a href="<?= base_url('admin/pesanan/' . $order1['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
+													<td><?= $pesanan1['nama'] ?></td>
+													<td><?= tanggal($pesanan1['waktu_pesan']) ?></td>
+													<td><?= tanggal($pesanan1['waktu_kirim']) ?></td>
+													<td align="center"><?= $pesanan1['jumlah'] ?></td>
+													<td>Rp <?= number_format($pesanan1['total_harga'], 0, ',', '.') ?></td>
+													<td><span class="badge bg-warning"><?= $pesanan1['status'] ?></span></td>
+													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan1['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
 												</tr>
 											<?php $no++;
-											} ?>
+																					} ?>
 											</tfoot>
 									</table>
 								</div>
 								<div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
-									<table id="example1" class="table table-bordered table-striped">
+									<table id="example2" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>No.</th>
@@ -89,25 +92,25 @@ include 'header.php';
 										</thead>
 										<tbody>
 											<?php
-											$no = 1;
-											foreach ($order2 as $order2) { ?>
+																					$no = 1;
+																					foreach ($pesanan2 as $pesanan2) { ?>
 												<tr>
 													<td><?= $no ?></td>
-													<td><?= $order2['nama'] ?></td>
-													<td><?= tanggal($order2['waktu_pesan']) ?></td>
-													<td><?= tanggal($order2['waktu_kirim']) ?></td>
-													<td align="center"><?= $order2['jumlah'] ?></td>
-													<td>Rp <?= number_format($order2['total_harga'], 0, ',', '.') ?></td>
-													<td><span class="badge bg-primary"><?= $order2['status'] ?></span></td>
-													<td> <a href="<?= base_url('admin/pesanan/' . $order2['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
+													<td><?= $pesanan2['nama'] ?></td>
+													<td><?= tanggal($pesanan2['waktu_pesan']) ?></td>
+													<td><?= tanggal($pesanan2['waktu_kirim']) ?></td>
+													<td align="center"><?= $pesanan2['jumlah'] ?></td>
+													<td>Rp <?= number_format($pesanan2['total_harga'], 0, ',', '.') ?></td>
+													<td><span class="badge bg-primary"><?= $pesanan2['status'] ?></span></td>
+													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan2['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
 												</tr>
 											<?php $no++;
-											} ?>
+																					} ?>
 											</tfoot>
 									</table>
 								</div>
 								<div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
-									<table id="example1" class="table table-bordered table-striped">
+									<table id="example3" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>No.</th>
@@ -122,25 +125,25 @@ include 'header.php';
 										</thead>
 										<tbody>
 											<?php
-											$no = 1;
-											foreach ($order3 as $order3) { ?>
+																					$no = 1;
+																					foreach ($pesanan3 as $pesanan3) { ?>
 												<tr>
 													<td><?= $no ?></td>
-													<td><?= $order3['nama'] ?></td>
-													<td><?= tanggal($order3['waktu_pesan']) ?></td>
-													<td><?= tanggal($order3['waktu_kirim']) ?></td>
-													<td align="center"><?= $order3['jumlah'] ?></td>
-													<td>Rp <?= number_format($order3['total_harga'], 0, ',', '.') ?></td>
-													<td><span class="badge bg-info"><?= $order3['status'] ?></span></td>
-													<td> <a href="<?= base_url('admin/pesanan/' . $order3['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
+													<td><?= $pesanan3['nama'] ?></td>
+													<td><?= tanggal($pesanan3['waktu_pesan']) ?></td>
+													<td><?= tanggal($pesanan3['waktu_kirim']) ?></td>
+													<td align="center"><?= $pesanan3['jumlah'] ?></td>
+													<td>Rp <?= number_format($pesanan3['total_harga'], 0, ',', '.') ?></td>
+													<td><span class="badge bg-info"><?= $pesanan3['status'] ?></span></td>
+													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan3['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
 												</tr>
 											<?php $no++;
-											} ?>
+																					} ?>
 											</tfoot>
 									</table>
 								</div>
 								<div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
-									<table id="example1" class="table table-bordered table-striped">
+									<table id="example4" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>No.</th>
@@ -155,20 +158,53 @@ include 'header.php';
 										</thead>
 										<tbody>
 											<?php
-											$no = 1;
-											foreach ($order4 as $order4) { ?>
+																					$no = 1;
+																					foreach ($pesanan4 as $pesanan4) { ?>
 												<tr>
 													<td><?= $no ?></td>
-													<td><?= $order4['nama'] ?></td>
-													<td><?= tanggal($order4['waktu_pesan']) ?></td>
-													<td><?= tanggal($order4['waktu_kirim']) ?></td>
-													<td align="center"><?= $order4['jumlah'] ?></td>
-													<td>Rp <?= number_format($order4['total_harga'], 0, ',', '.') ?></td>
-													<td><span class="badge bg-success"><?= $order4['status'] ?></span></td>
-													<td> <a href="<?= base_url('admin/pesanan/' . $order4['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
+													<td><?= $pesanan4['nama'] ?></td>
+													<td><?= tanggal($pesanan4['waktu_pesan']) ?></td>
+													<td><?= tanggal($pesanan4['waktu_kirim']) ?></td>
+													<td align="center"><?= $pesanan4['jumlah'] ?></td>
+													<td>Rp <?= number_format($pesanan4['total_harga'], 0, ',', '.') ?></td>
+													<td><span class="badge bg-success"><?= $pesanan4['status'] ?></span></td>
+													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan4['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
 												</tr>
 											<?php $no++;
-											} ?>
+																					} ?>
+											</tfoot>
+									</table>
+								</div>
+								<div class="tab-pane fade" id="custom-content-below-settings2" role="tabpanel" aria-labelledby="custom-content-below-settings2-tab">
+									<table id="example4" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>No.</th>
+												<th>Nama Customer</th>
+												<th>Waktu Pesan</th>
+												<th>Waktu Kirim</th>
+												<th>Jumlah</th>
+												<th>Total Harga</th>
+												<th>Status Pembayaran</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+																					$no = 1;
+																					foreach ($pesanan5 as $pesanan5) { ?>
+												<tr>
+													<td><?= $no ?></td>
+													<td><?= $pesanan5['nama'] ?></td>
+													<td><?= tanggal($pesanan5['waktu_pesan']) ?></td>
+													<td><?= tanggal($pesanan5['waktu_kirim']) ?></td>
+													<td align="center"><?= $pesanan5['jumlah'] ?></td>
+													<td>Rp <?= number_format($pesanan5['total_harga'], 0, ',', '.') ?></td>
+													<td><span class="badge bg-success"><?= $pesanan5['status'] ?></span></td>
+													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan5['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
+												</tr>
+											<?php $no++;
+																					} ?>
 											</tfoot>
 									</table>
 								</div>
