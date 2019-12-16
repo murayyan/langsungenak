@@ -3,7 +3,7 @@
 class M_pembayaran extends CI_Model{
 
 	private $id;
-	private $id_order;
+	private $id_pesanan;
 	private $no_rekening;
 	private $bank_rekening;
 	private $bank_tujuan;
@@ -14,4 +14,3 @@ class M_pembayaran extends CI_Model{
 	}
 	
 }
-?>

@@ -1,29 +1,34 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Produk extends CI_Controller {
-	 
-	public function __construct(){
+class Produk extends CI_Controller
+{
+
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->helper('file');
-        $this->load->library('form_validation');
-        $this->load->model('M_produk');
+		$this->load->library('form_validation');
+		$this->load->model('M_produk');
 	}
-	
-	public function authentication(){
-		if ($this->session->userdata('level')!='SPV') {
+
+	public function authentication()
+	{
+		if ($this->session->userdata('level') != 'SPV') {
 			redirect('admin/login');
 		}
 	}
 
-	public function data_produk(){
-        $this->authentication();
-        $data['produk'] = $this->M_produk->data_produk()->result_array();
-		$this->load->view('admin/data_produk', $data);		
-    }
-    
-	public function add_produk(){
-        $this->authentication();
+	public function data_produk()
+	{
+		$this->authentication();
+		$data['produk'] = $this->M_produk->data_produk()->result_array();
+		$this->load->view('admin/data_produk', $data);
+	}
+
+	public function add_produk()
+	{
+		$this->authentication();
 		$this->form_validation->set_rules('nama_produk', 'Nama Produk', 'trim|required');
 		$this->form_validation->set_rules('deskripsi', 'Deskripsi', 'trim|required');
 		$this->form_validation->set_rules('kategori', 'Kategori', 'trim|required');
@@ -33,7 +38,7 @@ class Produk extends CI_Controller {
 			# code...
 			$data['jenis_form'] = 'add';
 			$this->load->view('admin/produk', $data);
-		}else{
+		} else {
 
 			$filename = null;
 			if ($_FILES['gambar']['name'] != '') {
@@ -45,15 +50,14 @@ class Produk extends CI_Controller {
 				];
 
 				$this->load->library('upload', $config);
-				
+
 				if (!$this->upload->do_upload('gambar')) { // jika gak berhasil upload
 					$this->session->set_flashdata('gambar_error', '<small class="text-danger pl-3">' . $this->upload->display_errors() . '</small>');
 					echo "<script>history.go(-1);</script>";
 					die;
-				}else{
+				} else {
 					$filename = $config['file_name'];
 				}
-				
 			}
 
 			$data = [
@@ -87,7 +91,7 @@ class Produk extends CI_Controller {
 			$data['jenis_form'] = 'edit';
 			$this->load->view('admin/produk', $data);
 		} else {
-			
+
 			if ($_FILES['gambar']['name'] != '') {
 				$config = [
 					'file_name' 	=> time() . '_' . substr(str_replace(' ', '_', $_FILES['gambar']['name']), -12),
@@ -97,16 +101,15 @@ class Produk extends CI_Controller {
 				];
 
 				$this->load->library('upload', $config);
-				
+
 				if (!$this->upload->do_upload('gambar')) { // jika gak berhasil upload
 					$this->session->set_flashdata('gambar_error', '<small class="text-danger pl-3">' . $this->upload->display_errors() . '</small>');
 					echo "<script>history.go(-1);</script>";
 					die;
-				}else{
+				} else {
 					$filename = $config['file_name'];
-					unlink('./assets/images/gambar_produk/'. $old_gambar);
+					unlink('./assets/images/gambar_produk/' . $old_gambar);
 				}
-				
 			} else {
 				$filename = $old_gambar;
 			}
@@ -133,10 +136,9 @@ class Produk extends CI_Controller {
 
 		$old_gambar = $data->gambar;
 		// hapus foto produk
-		unlink('./assets/uploads/personel_photos/' . $dataFotoLama);
+		unlink('./assets/uploads/personel_photos/' . $old_gambar);
 		// delete dari database
 		$this->db->delete('produk', ['id' => $input['id']]);
 		redirect(base_url('admin/data_produk'));
 	}
-
 }

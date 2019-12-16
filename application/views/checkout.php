@@ -50,8 +50,8 @@
 									</td>
 								</tr>
 								<?php } else {
-									$i = 1;
-									foreach ($this->cart->contents() as $items) { ?>
+								$i = 1;
+								foreach ($this->cart->contents() as $items) { ?>
 									<tr class="rem1">
 										<td class="invert"><?= $i ?></td>
 										<td class="invert-image">
@@ -82,8 +82,8 @@
 										</td>
 									</tr>
 							<?php $i++;
-								}
-							} ?>
+																																		}
+																																	} ?>
 							<tr class="rem1" height="60">
 								<td class="invert" colspan="3">Total</td>
 								<td class="invert sum_item"><?= $this->cart->total_items() ?></td>

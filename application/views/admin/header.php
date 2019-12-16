@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="<?php echo base_url('assets/admin/plugins/select2/css/select2.min.css') ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.css') ?>">
 	<link rel="stylesheet" href="<?php echo base_url('assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/admin/plugins/ekko-lightbox/ekko-lightbox.css') ?>">
 	<!-- Google Font: Source Sans Pro -->
 	<link rel="stylesheet" href="<?php echo base_url('assets/admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') ?>">
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
