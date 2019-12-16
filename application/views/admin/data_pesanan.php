@@ -36,7 +36,10 @@ include 'header.php';
 									<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Sedang Diproduksi</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Selesai</a>
+									<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Menunggu Pengiriman</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="custom-content-below-settings2-tab" data-toggle="pill" href="#custom-content-below-settings2" role="tab" aria-controls="custom-content-below-settings2" aria-selected="false">Sudah Dikirim</a>
 								</li>
 							</ul>
 							<div class="tab-content" id="custom-content-below-tabContent">
@@ -69,7 +72,7 @@ include 'header.php';
 													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan1['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
 												</tr>
 											<?php $no++;
-											} ?>
+																					} ?>
 											</tfoot>
 									</table>
 								</div>
@@ -89,8 +92,8 @@ include 'header.php';
 										</thead>
 										<tbody>
 											<?php
-											$no = 1;
-											foreach ($pesanan2 as $pesanan2) { ?>
+																					$no = 1;
+																					foreach ($pesanan2 as $pesanan2) { ?>
 												<tr>
 													<td><?= $no ?></td>
 													<td><?= $pesanan2['nama'] ?></td>
@@ -102,7 +105,7 @@ include 'header.php';
 													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan2['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
 												</tr>
 											<?php $no++;
-											} ?>
+																					} ?>
 											</tfoot>
 									</table>
 								</div>
@@ -122,8 +125,8 @@ include 'header.php';
 										</thead>
 										<tbody>
 											<?php
-											$no = 1;
-											foreach ($pesanan3 as $pesanan3) { ?>
+																					$no = 1;
+																					foreach ($pesanan3 as $pesanan3) { ?>
 												<tr>
 													<td><?= $no ?></td>
 													<td><?= $pesanan3['nama'] ?></td>
@@ -135,7 +138,7 @@ include 'header.php';
 													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan3['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
 												</tr>
 											<?php $no++;
-											} ?>
+																					} ?>
 											</tfoot>
 									</table>
 								</div>
@@ -155,8 +158,8 @@ include 'header.php';
 										</thead>
 										<tbody>
 											<?php
-											$no = 1;
-											foreach ($pesanan4 as $pesanan4) { ?>
+																					$no = 1;
+																					foreach ($pesanan4 as $pesanan4) { ?>
 												<tr>
 													<td><?= $no ?></td>
 													<td><?= $pesanan4['nama'] ?></td>
@@ -168,7 +171,40 @@ include 'header.php';
 													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan4['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
 												</tr>
 											<?php $no++;
-											} ?>
+																					} ?>
+											</tfoot>
+									</table>
+								</div>
+								<div class="tab-pane fade" id="custom-content-below-settings2" role="tabpanel" aria-labelledby="custom-content-below-settings2-tab">
+									<table id="example4" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>No.</th>
+												<th>Nama Customer</th>
+												<th>Waktu Pesan</th>
+												<th>Waktu Kirim</th>
+												<th>Jumlah</th>
+												<th>Total Harga</th>
+												<th>Status Pembayaran</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+																					$no = 1;
+																					foreach ($pesanan5 as $pesanan5) { ?>
+												<tr>
+													<td><?= $no ?></td>
+													<td><?= $pesanan5['nama'] ?></td>
+													<td><?= tanggal($pesanan5['waktu_pesan']) ?></td>
+													<td><?= tanggal($pesanan5['waktu_kirim']) ?></td>
+													<td align="center"><?= $pesanan5['jumlah'] ?></td>
+													<td>Rp <?= number_format($pesanan5['total_harga'], 0, ',', '.') ?></td>
+													<td><span class="badge bg-success"><?= $pesanan5['status'] ?></span></td>
+													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan5['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
+												</tr>
+											<?php $no++;
+																					} ?>
 											</tfoot>
 									</table>
 								</div>

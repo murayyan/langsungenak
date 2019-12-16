@@ -23,7 +23,8 @@ class Pesanan extends CI_Controller
 		$data['pesanan1'] = $this->M_pesanan->get_pesanan(['status' => 'Menunggu Konfirmasi'])->result_array();
 		$data['pesanan2'] = $this->M_pesanan->get_pesanan(['status' => 'Belum Diproduksi'])->result_array();
 		$data['pesanan3'] = $this->M_pesanan->get_pesanan(['status' => 'Produksi'])->result_array();
-		$data['pesanan4'] = $this->M_pesanan->get_pesanan(['status' => 'Terkirim'])->result_array();
+		$data['pesanan4'] = $this->M_pesanan->get_pesanan(['status' => 'Belum Dikirim'])->result_array();
+		$data['pesanan5'] = $this->M_pesanan->get_pesanan(['status' => 'Terkirim'])->result_array();
 
 		$this->load->view('admin/data_pesanan', $data);
 	}
