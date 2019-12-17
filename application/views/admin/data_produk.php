@@ -42,8 +42,8 @@ include 'header.php';
 								</thead>
 								<tbody>
 									<?php
-									$no = 1;
-									foreach ($produk as $produk) { ?>
+										$no = 1;
+										foreach ($produk as $produk) { ?>
 										<tr>
 											<td><?= $no ?></td>
 											<td><?= $produk['nama_produk'] ?></td>
@@ -56,13 +56,13 @@ include 'header.php';
 											</td>
 											<td>
 												<a href="<?= base_url('admin/produk/' . $produk['id']) ?>" class="btn btn-sm btn-success">Edit</a>
-												<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapusProduk" onclick="deleteData(<?= $produk['id'] ?>, '<?= $produk['nama_produk'] ?>')">
+												<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapusProduk" onclick="deleteData('<?= $produk['id'] ?>', '<?= $produk['nama_produk'] ?>')">
 													<i class="fa fa-trash"></i> Delete
 												</button>
 											</td>
 										</tr>
 									<?php $no++;
-									} ?>
+																																												} ?>
 									</tfoot>
 							</table>
 						</div>

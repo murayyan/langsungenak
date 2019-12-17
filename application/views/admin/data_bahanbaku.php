@@ -26,9 +26,9 @@ include 'header.php';
 						</div>
 						<div class="card-body">
 							<?= $this->session->flashdata('message') ?>
-                            <button class="btn btn-success swalDefaultSuccess mb-3" data-toggle="modal" data-target="#tambahBahan">
-                                <i class="fa fa-plus"></i> Tambah Bahan Baku
-                            </button>
+							<button class="btn btn-success swalDefaultSuccess mb-3" data-toggle="modal" data-target="#tambahBahan">
+								<i class="fa fa-plus"></i> Tambah Bahan Baku
+							</button>
 							<table id="example1" class="table table-bordered table-striped">
 								<thead>
 									<tr>
@@ -50,15 +50,15 @@ include 'header.php';
 											<td><?= $bahan['stok'] ?></td>
 											<td>
 												<!-- <a href="<?= base_url('admin/bahanbaku/' . $bahan['id']) ?>" class="btn btn-sm btn-success">Edit</a> -->
-												<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#editBahan" onclick="editData(<?= $bahan['id'] ?>, '<?= $bahan['nama_bahan'] ?>', '<?= $bahan['kategori'] ?>', '<?= $bahan['stok'] ?>')">
-												Edit</button>
-												<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapusBahan" onclick="deleteData(<?= $bahan['id'] ?>, '<?= $bahan['nama_bahan'] ?>')">
+												<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#editBahan" onclick="editData('<?= $bahan['id'] ?>', '<?= $bahan['nama_bahan'] ?>', '<?= $bahan['kategori'] ?>', '<?= $bahan['stok'] ?>')">
+													Edit</button>
+												<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapusBahan" onclick="deleteData('<?= $bahan['id'] ?>', '<?= $bahan['nama_bahan'] ?>')">
 													<i class="fa fa-trash"></i> Delete
 												</button>
 											</td>
 										</tr>
 									<?php $no++;
-									} ?>
+																																																										} ?>
 									</tfoot>
 							</table>
 						</div>
@@ -85,34 +85,34 @@ include 'header.php';
 
 			<form action="<?= base_url('admin/bahanbaku/tambahBahan') ?>" method="post">
 				<div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                        <!-- text input -->
-                            <div class="form-group">
-                                <label for="namaProduk">Nama Bahan</label>
-                                <input type="text" class="form-control" name="nama_bahan" placeholder="Nama Bahan Baku" required>
-                            </div>
-                        </div>
-                    </div>
+					<div class="row">
+						<div class="col-sm-12">
+							<!-- text input -->
+							<div class="form-group">
+								<label for="namaProduk">Nama Bahan</label>
+								<input type="text" class="form-control" name="nama_bahan" placeholder="Nama Bahan Baku" required>
+							</div>
+						</div>
+					</div>
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="kategori">Kategori</label>
-                                <select name="kategori" class="form-control select2" style="width: 100%;" required>
-                                    <option disabled selected value>--- Pilih Kategori ---</option>
-                                    <option value="Roti Gal">Roti Gal</option>
-                                    <option value="Roti Boy">Roti Boy</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="harga">Stok</label>
-                                <input type="number" class="form-control" name="stok" min="0" placeholder="Stok" required>
-                            </div>
-                        </div>
-                    </div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="kategori">Kategori</label>
+								<select name="kategori" class="form-control select2" style="width: 100%;" required>
+									<option disabled selected value>--- Pilih Kategori ---</option>
+									<option value="Roti Gal">Roti Gal</option>
+									<option value="Roti Boy">Roti Boy</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="harga">Stok</label>
+								<input type="number" class="form-control" name="stok" min="0" placeholder="Stok" required>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<div class="modal-footer">
@@ -140,34 +140,34 @@ include 'header.php';
 			<form action="<?= base_url('admin/bahanbaku/updateBahan') ?>" method="post">
 				<input type="hidden" id="idEdit" name="id">
 				<div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                        <!-- text input -->
-                            <div class="form-group">
-                                <label for="namaProduk">Nama Bahan</label>
-                                <input type="text" class="form-control" id="namaEdit" name="nama_bahan" placeholder="Nama Bahan Baku" required>
-                            </div>
-                        </div>
-                    </div>
+					<div class="row">
+						<div class="col-sm-12">
+							<!-- text input -->
+							<div class="form-group">
+								<label for="namaProduk">Nama Bahan</label>
+								<input type="text" class="form-control" id="namaEdit" name="nama_bahan" placeholder="Nama Bahan Baku" required>
+							</div>
+						</div>
+					</div>
 
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="kategori">Kategori</label>
-                                <select name="kategori" class="form-control select2" style="width: 100%;" id="kategoriEdit" required>
-                                    <option disabled selected value>--- Pilih Kategori ---</option>
-                                    <option value="Roti Gal">Roti Gal</option>
-                                    <option value="Roti Boy">Roti Boy</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="harga">Stok</label>
-                                <input type="number" class="form-control" id="stokEdit" name="stok" min="0" placeholder="Stok" required>
-                            </div>
-                        </div>
-                    </div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="kategori">Kategori</label>
+								<select name="kategori" class="form-control select2" style="width: 100%;" id="kategoriEdit" required>
+									<option disabled selected value>--- Pilih Kategori ---</option>
+									<option value="Roti Gal">Roti Gal</option>
+									<option value="Roti Boy">Roti Boy</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="harga">Stok</label>
+								<input type="number" class="form-control" id="stokEdit" name="stok" min="0" placeholder="Stok" required>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<div class="modal-footer">

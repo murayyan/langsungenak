@@ -73,7 +73,7 @@ include 'header.php';
 												</tr>
 											<?php $no++;
 																					} ?>
-											</tfoot>
+										</tbody>
 									</table>
 								</div>
 								<div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
@@ -102,11 +102,12 @@ include 'header.php';
 													<td align="center"><?= $pesanan2['jumlah'] ?></td>
 													<td>Rp <?= number_format($pesanan2['total_harga'], 0, ',', '.') ?></td>
 													<td><span class="badge bg-primary"><?= $pesanan2['status'] ?></span></td>
-													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan2['id']) ?>" class="btn btn-sm btn-success">Detail</a></td>
+													<td> <a href="<?= base_url('admin/pesanan/' . $pesanan2['id']) ?>" class="btn btn-sm btn-success">Detail</a>
+													</td>
 												</tr>
 											<?php $no++;
 																					} ?>
-											</tfoot>
+										</tbody>
 									</table>
 								</div>
 								<div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
@@ -139,7 +140,7 @@ include 'header.php';
 												</tr>
 											<?php $no++;
 																					} ?>
-											</tfoot>
+										</tbody>
 									</table>
 								</div>
 								<div class="tab-pane fade" id="custom-content-below-settings" role="tabpanel" aria-labelledby="custom-content-below-settings-tab">
@@ -172,11 +173,11 @@ include 'header.php';
 												</tr>
 											<?php $no++;
 																					} ?>
-											</tfoot>
+										</tbody>
 									</table>
 								</div>
 								<div class="tab-pane fade" id="custom-content-below-settings2" role="tabpanel" aria-labelledby="custom-content-below-settings2-tab">
-									<table id="example4" class="table table-bordered table-striped">
+									<table id="example5" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>No.</th>
@@ -205,7 +206,7 @@ include 'header.php';
 												</tr>
 											<?php $no++;
 																					} ?>
-											</tfoot>
+										</tbody>
 									</table>
 								</div>
 							</div>

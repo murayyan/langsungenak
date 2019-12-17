@@ -40,7 +40,8 @@ class M_pesanan extends CI_Model
 
 	public function get_pesananById($where)
 	{
-		$this->db->join('customer', 'pesanan.customer = customer.id');
-		return $this->db->get_where('pesanan', $where);
+		$this->db->select('*, p.id as id_pesanan');
+		$this->db->join('customer c', 'p.customer = c.id');
+		return $this->db->get_where('pesanan p', $where);
 	}
 }

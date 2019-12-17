@@ -95,10 +95,27 @@
 								</a>
 							</li>
 							<li class="nav-item">
+								<a href="<?= base_url('admin/produksi'); ?>" class="nav-link <?php echo $page == 'rencana_produksi' ? 'active' : ''; ?>">
+									<i class="nav-icon fas fa-th"></i>
+									<p>
+										Rencana Produksi
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
 								<a href="<?= base_url('admin/data_produk') ?>" class="nav-link <?php echo $page == 'produk' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-th"></i>
 									<p>
 										Produk
+									</p>
+								</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="<?= base_url('admin/data_bahanbaku'); ?>" class="nav-link <?php echo $page == 'bahan' ? 'active' : ''; ?>">
+									<i class="nav-icon fas fa-th"></i>
+									<p>
+										Bahan Baku
 									</p>
 								</a>
 							</li>
@@ -107,14 +124,6 @@
 									<i class="nav-icon fas fa-th"></i>
 									<p>
 										Register
-									</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="<?= base_url('admin/data_bahanbaku'); ?>" class="nav-link <?php echo $page == 'bahan' ? 'active' : ''; ?>">
-									<i class="nav-icon fas fa-th"></i>
-									<p>
-										Bahan Baku
 									</p>
 								</a>
 							</li>
@@ -128,7 +137,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?= base_url('admin/data_user'); ?>" class="nav-link <?php echo $page == 'register' ? 'active' : ''; ?>">
+								<a href="<?= base_url('admin/produksi'); ?>" class="nav-link <?php echo $page == 'rencana_produksi' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-th"></i>
 									<p>
 										Rencana Produksi

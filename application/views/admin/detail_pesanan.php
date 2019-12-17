@@ -33,7 +33,7 @@ include 'header.php';
 						<div class="row">
 							<div class="col-12">
 								<h4>
-									<?= sprintf("#INV%05s", $pesanan['id']) ?>
+									<?= sprintf("#INV%05s", $pesanan['id_pesanan']) ?>
 									<small class="float-right">Date: 2/10/2014</small>
 								</h4>
 							</div>
@@ -47,6 +47,7 @@ include 'header.php';
 									<?php if ($pesanan['status'] == 'Menunggu Konfirmasi') { ?><span class="badge bg-warning"><?= $pesanan['status'] ?></span><br>
 									<?php } else if ($pesanan['status'] == 'Belum Diproduksi') { ?><span class="badge bg-primary"><?= $pesanan['status'] ?></span><br>
 									<?php } else if ($pesanan['status'] == 'Produksi') { ?><span class="badge bg-info"><?= $pesanan['status'] ?></span><br>
+									<?php } else if ($pesanan['status'] == 'Belum Dikirim') { ?><span class="badge bg-success"><?= $pesanan['status'] ?></span><br>
 									<?php } else if ($pesanan['status'] == 'Terkirim') { ?><span class="badge bg-success"><?= $pesanan['status'] ?></span><br>
 
 
@@ -71,30 +72,32 @@ include 'header.php';
 						</div>
 						<!-- /.row -->
 
+
 						<!-- Table row -->
 						<div class="row">
 							<div class="col-12 table-responsive">
-								<table class="table table-striped">
+								<table class="table table-striped" width="100%">
 									<thead>
 										<tr>
-											<th>No.</th>
-											<th>Produk</th>
-											<th>Jumlah</th>
-											<th>Subtotal</th>
+											<th width="10%">No.</th>
+											<th width="40%">Produk</th>
+											<th width="25%">Jumlah</th>
+											<th width="25%">Subtotal</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php $i = 1;
-										foreach ($detail as $detail) { ?>
+																																foreach ($detail as $detail1) { ?>
 											<tr>
 												<td><?= $i ?></td>
-												<td><?= $detail['nama_produk'] ?></td>
-												<td><?= $detail['jumlah'] ?></td>
-												<td>Rp <?= number_format($detail['total_harga'], 0, ',', '.') ?></td>
+												<td><?= $detail1['nama_produk'] ?></td>
+												<td><?= $detail1['jumlah'] ?></td>
+												<td>Rp <?= number_format($detail1['total_harga'], 0, ',', '.') ?></td>
 
 											</tr>
+
 										<?php $i++;
-										} ?>
+																																} ?>
 									</tbody>
 								</table>
 							</div>
@@ -150,13 +153,29 @@ include 'header.php';
 						<!-- this row will not appear when printing -->
 						<div class="row no-print">
 							<div class="col-12">
-								<a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-								<button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-									Payment
-								</button>
-								<button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-									<i class="fas fa-download"></i> Generate PDF
-								</button>
+								<?php if ($pesanan['status'] == 'Belum Diproduksi') { ?>
+									<form action="<?= base_url() ?>admin/pesanan/tambah_produksi" method="post">
+										<?php foreach ($detail as $detail2) { ?>
+											<?= form_hidden('id', $pesanan['id_pesanan']); ?>
+											<?= form_hidden('id_produk[]', $detail2['id_produk']); ?>
+											<?= form_hidden('jumlah[]', $detail2['jumlah']); ?>
+										<?php } ?>
+										<button type="submit" class="btn btn-primary float-right">
+											<i class="fas fa-download"></i> Tambahkan ke Produksi
+										</button>
+									</form>
+								<?php } ?>
+								<?php if ($pesanan['status'] == 'Menunggu Konfirmasi') { ?>
+									<button type="button" class="btn btn-success float-right" style="margin-right: 5px;"><i class="far fa-credit-card"></i>
+										Konfirmasi Pembayaran
+									</button>
+								<?php } ?>
+								<?php if ($pesanan['status'] == 'Belum Dikirim') { ?>
+									<button type="button" class="btn btn-success float-right" style="margin-right: 5px;"><i class="far fa-credit-card"></i>
+										Pilih Kurir
+									</button>
+								<?php } ?>
+
 							</div>
 						</div>
 					</div>
