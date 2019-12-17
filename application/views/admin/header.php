@@ -120,13 +120,14 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?= base_url('admin/data_user'); ?>" class="nav-link <?php echo $page == 'register' ? 'active' : ''; ?>">
+								<a href="<?= base_url('admin/data_pengantaran'); ?>" class="nav-link <?php echo $page == 'bahan' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-th"></i>
 									<p>
-										Register
+										Pengantaran
 									</p>
 								</a>
 							</li>
+
 						<?php } else if ($this->session->userdata('level') == 'PRODUKSI') { ?>
 							<li class="nav-item has-treeview">
 								<a href="<?= base_url('admin/dashboard'); ?>" class="nav-link <?php echo $page == 'dashboard' ? 'active' : ''; ?>">
