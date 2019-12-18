@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Des 2019 pada 08.47
+-- Waktu pembuatan: 18 Des 2019 pada 11.06
 -- Versi server: 10.3.16-MariaDB
 -- Versi PHP: 7.3.7
 
@@ -55,7 +55,6 @@ INSERT INTO `admin` (`id`, `email`, `password`, `nama`, `nohp`, `level`) VALUES
 CREATE TABLE `bahan_baku` (
   `id` int(11) NOT NULL,
   `nama_bahan` varchar(50) NOT NULL,
-  `kategori` varchar(50) DEFAULT NULL,
   `stok` int(11) DEFAULT NULL,
   `gambar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -64,8 +63,9 @@ CREATE TABLE `bahan_baku` (
 -- Dumping data untuk tabel `bahan_baku`
 --
 
-INSERT INTO `bahan_baku` (`id`, `nama_bahan`, `kategori`, `stok`, `gambar`) VALUES
-(1, 'Gula', 'Roti Gal', 5, NULL);
+INSERT INTO `bahan_baku` (`id`, `nama_bahan`, `stok`, `gambar`) VALUES
+(1, 'Gula', 0, NULL),
+(2, 'Tepung', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -194,10 +194,10 @@ CREATE TABLE `pesanan` (
 INSERT INTO `pesanan` (`id`, `customer`, `no_hp`, `alamat`, `waktu_pesan`, `waktu_kirim`, `jumlah`, `total_harga`, `status`) VALUES
 (16, 9, '081338423751', 'Jl. Veteran', '2019-11-20', '2019-11-16', 4, 24000, 'Terkirim'),
 (17, 9, '081338423751', 'Malang, Sawojajar', '2019-11-15', '2019-11-16', 3, 150000, 'Produksi'),
-(18, 9, '081338423751', 'Jl. Gunung', '2019-11-16', '2019-11-16', 25, 150000, 'Produksi'),
+(18, 9, '081338423751', 'Jl. Gunung', '2019-11-16', '2019-11-16', 25, 150000, 'Belum Dikirim'),
 (19, 9, '081338423751', 'Jl. Veteran', '2019-12-16', '2019-12-18', 25, 150000, 'Belum Dikirim'),
 (20, 9, '081338423751', 'Jl. Veteran', '2019-12-16', '2019-12-18', 25, 150000, 'Menunggu Pembayaran'),
-(21, 9, '085748009552', 'Jl. Veteran', '2019-12-17', '2019-12-18', 25, 150000, 'Produksi');
+(21, 9, '085748009552', 'Jl. Veteran', '2019-12-17', '2019-12-18', 25, 150000, 'Belum Dikirim');
 
 -- --------------------------------------------------------
 
@@ -212,7 +212,7 @@ CREATE TABLE `produk` (
   `kategori` varchar(50) NOT NULL,
   `harga` int(15) NOT NULL,
   `gambar` varchar(255) NOT NULL,
-  `stok` int(11) NOT NULL
+  `stok` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -242,11 +242,9 @@ CREATE TABLE `rencana_produksi` (
 --
 
 INSERT INTO `rencana_produksi` (`id`, `id_produk`, `jumlah`, `status`) VALUES
-(5, 1, 25, 'proses'),
-(6, 1, 25, 'proses'),
-(7, 5, 50, 'proses'),
-(8, 6, 100, 'proses'),
-(9, 1, 25, 'proses');
+(14, 1, 25, 'selesai'),
+(15, 1, 25, 'selesai'),
+(16, 1, 3, 'selesai');
 
 --
 -- Indexes for dumped tables
@@ -274,7 +272,9 @@ ALTER TABLE `customer`
 -- Indeks untuk tabel `detail_pesanan`
 --
 ALTER TABLE `detail_pesanan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pesanan` (`id_pesanan`),
+  ADD KEY `id_produk` (`id_produk`);
 
 --
 -- Indeks untuk tabel `jadwal_antar`
@@ -286,7 +286,8 @@ ALTER TABLE `jadwal_antar`
 -- Indeks untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pesanan` (`id_pesanan`);
 
 --
 -- Indeks untuk tabel `pengantar`
@@ -310,7 +311,8 @@ ALTER TABLE `produk`
 -- Indeks untuk tabel `rencana_produksi`
 --
 ALTER TABLE `rencana_produksi`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_produk` (`id_produk`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -326,7 +328,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT untuk tabel `bahan_baku`
 --
 ALTER TABLE `bahan_baku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `customer`
@@ -374,7 +376,30 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT untuk tabel `rencana_produksi`
 --
 ALTER TABLE `rencana_produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `detail_pesanan`
+--
+ALTER TABLE `detail_pesanan`
+  ADD CONSTRAINT `detail_pesanan_ibfk_1` FOREIGN KEY (`id_pesanan`) REFERENCES `pesanan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detail_pesanan_ibfk_2` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_pesanan`) REFERENCES `pesanan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `rencana_produksi`
+--
+ALTER TABLE `rencana_produksi`
+  ADD CONSTRAINT `rencana_produksi_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
