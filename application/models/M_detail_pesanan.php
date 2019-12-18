@@ -15,6 +15,10 @@ class M_detail_pesanan extends CI_Model
 	}
 	public function get_detail_pesanan($where)
 	{
-		return $this->db->get_where('detail_pesanan', $where);
+		return $this->db->query("select a.id, a.id_pesanan, a.id_produk, a.nama_produk, a.jumlah, a.total_harga, b.stok  from 
+		(select * from detail_pesanan where id_pesanan = {$where}) a
+		left join
+		(select * from produk) b
+		ON a.id_produk = b.id");
 	}
 }

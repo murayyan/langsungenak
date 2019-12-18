@@ -95,6 +95,14 @@
 								</a>
 							</li>
 							<li class="nav-item">
+								<a href="<?= base_url('admin/produksi'); ?>" class="nav-link <?php echo $page == 'rencana_produksi' ? 'active' : ''; ?>">
+									<i class="nav-icon fas fa-th"></i>
+									<p>
+										Rencana Produksi
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
 								<a href="<?= base_url('admin/data_produk') ?>" class="nav-link <?php echo $page == 'produk' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-th"></i>
 									<p>
@@ -102,14 +110,7 @@
 									</p>
 								</a>
 							</li>
-							<li class="nav-item">
-								<a href="<?= base_url('admin/data_user'); ?>" class="nav-link <?php echo $page == 'register' ? 'active' : ''; ?>">
-									<i class="nav-icon fas fa-th"></i>
-									<p>
-										Register
-									</p>
-								</a>
-							</li>
+
 							<li class="nav-item">
 								<a href="<?= base_url('admin/data_bahanbaku'); ?>" class="nav-link <?php echo $page == 'bahan' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-th"></i>
@@ -119,10 +120,18 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?= base_url('admin/data_pengantaran'); ?>" class="nav-link <?php echo $page == 'bahan' ? 'active' : ''; ?>">
+								<a href="<?= base_url('admin/data_pengantaran'); ?>" class="nav-link <?php echo $page == 'pengantaran' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-th"></i>
 									<p>
 										Pengantaran
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('admin/register'); ?>" class="nav-link <?php echo $page == 'register' ? 'active' : ''; ?>">
+									<i class="nav-icon fas fa-th"></i>
+									<p>
+										Register
 									</p>
 								</a>
 							</li>
@@ -137,10 +146,18 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?= base_url('admin/data_user'); ?>" class="nav-link <?php echo $page == 'register' ? 'active' : ''; ?>">
+								<a href="<?= base_url('admin/produksi'); ?>" class="nav-link <?php echo $page == 'rencana_produksi' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-th"></i>
 									<p>
 										Rencana Produksi
+									</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('admin/data_pesanan'); ?>" class="nav-link <?php echo $page == 'pesanan' ? 'active' : ''; ?>">
+									<i class="nav-icon fas fa-th"></i>
+									<p>
+										Pesanan
 									</p>
 								</a>
 							</li>
