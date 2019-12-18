@@ -71,6 +71,6 @@ $route['admin/data_produk'] = 'admin/produk/data_produk';
 $route['admin/produk'] = 'admin/produk/add_produk';
 $route['admin/produk/(:num)'] = 'admin/produk/edit_produk/$1';
 $route['admin/data_pesanan'] = 'admin/pesanan/data_pesanan';
-$route['admin/produksi'] = 'admin/pesanan/produksi';
+$route['admin/produksi'] = 'admin/produksi/produksi';
 $route['admin/pesanan/(:num)'] = 'admin/pesanan/detail_pesanan/$1';
 $route['admin/data_bahanbaku'] = 'admin/bahanbaku/data_bahanbaku';

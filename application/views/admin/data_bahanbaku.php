@@ -34,7 +34,6 @@ include 'header.php';
 									<tr>
 										<th>No.</th>
 										<th>Nama Bahan Baku</th>
-										<th>Kategori</th>
 										<th>Stok</th>
 										<th></th>
 									</tr>
@@ -46,11 +45,10 @@ include 'header.php';
 										<tr>
 											<td><?= $no ?></td>
 											<td><?= $bahan['nama_bahan'] ?></td>
-											<td><?= $bahan['kategori'] ?></td>
 											<td><?= $bahan['stok'] ?></td>
 											<td>
 												<!-- <a href="<?= base_url('admin/bahanbaku/' . $bahan['id']) ?>" class="btn btn-sm btn-success">Edit</a> -->
-												<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#editBahan" onclick="editData('<?= $bahan['id'] ?>', '<?= $bahan['nama_bahan'] ?>', '<?= $bahan['kategori'] ?>', '<?= $bahan['stok'] ?>')">
+												<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#editBahan" onclick="editData('<?= $bahan['id'] ?>', '<?= $bahan['nama_bahan'] ?>', '<?= $bahan['stok'] ?>')">
 													Edit</button>
 												<button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapusBahan" onclick="deleteData('<?= $bahan['id'] ?>', '<?= $bahan['nama_bahan'] ?>')">
 													<i class="fa fa-trash"></i> Delete
@@ -58,7 +56,7 @@ include 'header.php';
 											</td>
 										</tr>
 									<?php $no++;
-																																																										} ?>
+																																																			} ?>
 									</tfoot>
 							</table>
 						</div>
@@ -96,16 +94,6 @@ include 'header.php';
 					</div>
 
 					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label for="kategori">Kategori</label>
-								<select name="kategori" class="form-control select2" style="width: 100%;" required>
-									<option disabled selected value>--- Pilih Kategori ---</option>
-									<option value="Roti Gal">Roti Gal</option>
-									<option value="Roti Boy">Roti Boy</option>
-								</select>
-							</div>
-						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="harga">Stok</label>
@@ -151,16 +139,7 @@ include 'header.php';
 					</div>
 
 					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label for="kategori">Kategori</label>
-								<select name="kategori" class="form-control select2" style="width: 100%;" id="kategoriEdit" required>
-									<option disabled selected value>--- Pilih Kategori ---</option>
-									<option value="Roti Gal">Roti Gal</option>
-									<option value="Roti Boy">Roti Boy</option>
-								</select>
-							</div>
-						</div>
+
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label for="harga">Stok</label>
@@ -212,10 +191,9 @@ include 'header.php';
 <!-- /.control-sidebar -->
 
 <script>
-	function editData(id, nama, kategori, stok) {
+	function editData(id, nama, stok) {
 		document.getElementById('idEdit').value = id
 		document.getElementById("namaEdit").value = nama
-		document.getElementById("kategoriEdit").value = kategori
 		document.getElementById("stokEdit").value = stok
 	}
 </script>

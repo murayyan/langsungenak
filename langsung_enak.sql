@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Des 2019 pada 06.46
+-- Waktu pembuatan: 17 Des 2019 pada 08.47
 -- Versi server: 10.3.16-MariaDB
 -- Versi PHP: 7.3.7
 
@@ -116,7 +116,8 @@ INSERT INTO `detail_pesanan` (`id`, `id_pesanan`, `id_produk`, `nama_produk`, `j
 (15, 16, 1, 'roti curut', 4, 24000),
 (16, 17, 1, 'roti boy', 3, 150000),
 (17, 18, 1, 'roti curut', 25, 150000),
-(18, 20, 1, 'roti curut', 25, 150000);
+(18, 20, 1, 'roti curut', 25, 150000),
+(19, 21, 1, 'roti curut', 25, 150000);
 
 -- --------------------------------------------------------
 
@@ -148,6 +149,13 @@ CREATE TABLE `pembayaran` (
   `bank_tujuan` varchar(25) NOT NULL,
   `file` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id`, `id_pesanan`, `no_rekening`, `nama_rekening`, `bank_rekening`, `bank_tujuan`, `file`) VALUES
+(8, 21, '91029381', 'Maulidiya', 'BCA', 'BCA', '1576565099_age-0001.jpg');
 
 -- --------------------------------------------------------
 
@@ -186,9 +194,10 @@ CREATE TABLE `pesanan` (
 INSERT INTO `pesanan` (`id`, `customer`, `no_hp`, `alamat`, `waktu_pesan`, `waktu_kirim`, `jumlah`, `total_harga`, `status`) VALUES
 (16, 9, '081338423751', 'Jl. Veteran', '2019-11-20', '2019-11-16', 4, 24000, 'Terkirim'),
 (17, 9, '081338423751', 'Malang, Sawojajar', '2019-11-15', '2019-11-16', 3, 150000, 'Produksi'),
-(18, 9, '081338423751', 'Jl. Gunung', '2019-11-16', '2019-11-16', 25, 150000, 'Belum Diproduksi'),
+(18, 9, '081338423751', 'Jl. Gunung', '2019-11-16', '2019-11-16', 25, 150000, 'Produksi'),
 (19, 9, '081338423751', 'Jl. Veteran', '2019-12-16', '2019-12-18', 25, 150000, 'Belum Dikirim'),
-(20, 9, '081338423751', 'Jl. Veteran', '2019-12-16', '2019-12-18', 25, 150000, 'Menunggu Pembayaran');
+(20, 9, '081338423751', 'Jl. Veteran', '2019-12-16', '2019-12-18', 25, 150000, 'Menunggu Pembayaran'),
+(21, 9, '085748009552', 'Jl. Veteran', '2019-12-17', '2019-12-18', 25, 150000, 'Produksi');
 
 -- --------------------------------------------------------
 
@@ -202,15 +211,18 @@ CREATE TABLE `produk` (
   `deskripsi` varchar(255) DEFAULT NULL,
   `kategori` varchar(50) NOT NULL,
   `harga` int(15) NOT NULL,
-  `gambar` varchar(255) NOT NULL
+  `gambar` varchar(255) NOT NULL,
+  `stok` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `produk`
 --
 
-INSERT INTO `produk` (`id`, `nama_produk`, `deskripsi`, `kategori`, `harga`, `gambar`) VALUES
-(1, 'roti curut', 'enak deh', 'Roti Boy', 6000, 'roti1.jpg');
+INSERT INTO `produk` (`id`, `nama_produk`, `deskripsi`, `kategori`, `harga`, `gambar`, `stok`) VALUES
+(1, 'roti curut', 'enak deh', 'Roti Boy', 6000, 'roti1.jpg', 0),
+(5, 'roti boy', 'enak dong', 'roti gandum', 7000, 'roti1.jpg', 0),
+(6, 'roti buaya', 'enak bgt', 'roti gede', 7000, 'roti1.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -221,9 +233,20 @@ INSERT INTO `produk` (`id`, `nama_produk`, `deskripsi`, `kategori`, `harga`, `ga
 CREATE TABLE `rencana_produksi` (
   `id` int(11) NOT NULL,
   `id_produk` int(11) NOT NULL,
-  `jumlah` int(11) DEFAULT NULL,
+  `jumlah` int(11) NOT NULL,
   `status` enum('proses','selesai') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `rencana_produksi`
+--
+
+INSERT INTO `rencana_produksi` (`id`, `id_produk`, `jumlah`, `status`) VALUES
+(5, 1, 25, 'proses'),
+(6, 1, 25, 'proses'),
+(7, 5, 50, 'proses'),
+(8, 6, 100, 'proses'),
+(9, 1, 25, 'proses');
 
 --
 -- Indexes for dumped tables
@@ -315,7 +338,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT untuk tabel `detail_pesanan`
 --
 ALTER TABLE `detail_pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal_antar`
@@ -327,7 +350,7 @@ ALTER TABLE `jadwal_antar`
 -- AUTO_INCREMENT untuk tabel `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengantar`
@@ -339,19 +362,19 @@ ALTER TABLE `pengantar`
 -- AUTO_INCREMENT untuk tabel `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `rencana_produksi`
 --
 ALTER TABLE `rencana_produksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

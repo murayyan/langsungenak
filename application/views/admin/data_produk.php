@@ -34,7 +34,7 @@ include 'header.php';
 									<tr>
 										<th>No.</th>
 										<th>Nama Produk</th>
-										<th>Kategori</th>
+										<th>Stok</th>
 										<th>Harga</th>
 										<th>Foto</th>
 										<th></th>
@@ -47,7 +47,7 @@ include 'header.php';
 										<tr>
 											<td><?= $no ?></td>
 											<td><?= $produk['nama_produk'] ?></td>
-											<td><?= $produk['kategori'] ?></td>
+											<td><?= $produk['stok'] ?></td>
 											<td><?= $produk['harga'] ?></td>
 											<td>
 												<div class="popup-foto">

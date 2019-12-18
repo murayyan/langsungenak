@@ -87,9 +87,11 @@ include 'header.php';
 			</div>
 			<!-- ./row -->
 		</div><!-- /.container-fluid -->
-		<button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#bahanbaku" style="margin-right: 5px;"><i class="far fa-credit-product"></i>
-			Mulai Produksi
-		</button>
+		<?php if ($this->session->userdata('level') == 'PRODUKSI' && $produksi != null) { ?>
+			<button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#bahanbaku" style="margin-right: 5px;"><i class="far fa-credit-product"></i>
+				Mulai Produksi
+			</button>
+		<?php } ?>
 	</section>
 </div>
 <!-- /.content-wrapper -->
@@ -102,32 +104,45 @@ include 'header.php';
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span></button>
 			</div>
-			<div class="modal-body">
-				<table id="example6" class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<th width="10%">No.</th>
-							<th width="40%">Nama Produk</th>
-							<th width="25%">Stok</th>
-							<th width="25%">Kebutuhan</th>
-
-						</tr>
-					</thead>
-					<tbody>
-						<?php
-																			$no = 1;
-																			foreach ($bahan as $bahan) { ?>
+			<form action="<?= base_url() ?>admin/produksi/get_bahanbaku" method="post">
+				<div class="modal-body">
+					<table id="example6" class="table table-bordered table-striped">
+						<thead>
 							<tr>
-								<td><?= $no ?></td>
-								<td><?= $bahan['nama_bahan'] ?></td>
-								<td><?= $bahan['stok'] ?></td>
-								<td><input type="number" placeholder="0" class="form-control" min="0" max="<?= $bahan['stok'] ?>"></td>
-							</tr>
-						<?php } ?>
-					</tbody>
-				</table>
-			</div>
+								<th width="10%">No.</th>
+								<th width="40%">Nama Produk</th>
+								<th width="25%">Stok</th>
+								<th width="25%">Kebutuhan</th>
 
+							</tr>
+						</thead>
+
+						<tbody>
+							<?php
+																			$no = 1;
+																			foreach ($produksi as $pro) { ?>
+								<input type="hidden" name="id_produk[]" class="form-control" value="<?= $pro['id'] ?>">
+								<input type="hidden" name="jumlah[]" class="form-control" value="<?= $pro['jumlah'] ?>">
+							<?php }
+																								foreach ($bahan as $bahan) { ?>
+								<tr>
+									<td><?= $no ?></td>
+									<td><?= $bahan['nama_bahan'] ?></td>
+									<td><?= $bahan['stok'] ?></td>
+									<td><input type="hidden" name="id[]" value="<?= $bahan['id'] ?>">
+										<input type="number" placeholder="0" name="bahan[]" class="form-control" min="0" value="0" max="<?= $bahan['stok'] ?>">
+									</td>
+								</tr>
+							<?php } ?>
+
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-info">Produksi</button>
+				</div>
+
+			</form>
 
 		</div>
 		<!-- /.modal-content -->

@@ -20,6 +20,10 @@ class M_rencana_produksi extends CI_Model
 		(select * from produk) a
 		left join 
 		(select id_produk, sum(jumlah) as jumlah, status from rencana_produksi where status = 'proses' group by id_produk) b
-		ON a.id = b.id_produk");
+		ON a.id = b.id_produk where jumlah IS NOT NULL");
+	}
+	public function change_status($id)
+	{
+		$this->db->query("update rencana_produksi set status = 'selesai' where id_produk = {$id}");
 	}
 }

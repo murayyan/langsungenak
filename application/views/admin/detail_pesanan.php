@@ -78,20 +78,41 @@ include 'header.php';
 							<div class="col-12 table-responsive">
 								<table class="table table-striped" width="100%">
 									<thead>
-										<tr>
-											<th width="10%">No.</th>
-											<th width="40%">Produk</th>
-											<th width="25%">Jumlah</th>
-											<th width="25%">Subtotal</th>
-										</tr>
+										<?php if ($pesanan['status'] == 'Produksi') { ?>
+											<tr>
+												<th width="10%">No.</th>
+												<th width="30%">Produk</th>
+												<th width="20%">Jumlah</th>
+												<th width="15%">Stok</th>
+												<th width="25%">Subtotal</th>
+											</tr>
+										<?php } else { ?>
+											<tr>
+												<th width="10%">No.</th>
+												<th width="40%">Produk</th>
+												<th width="25%">Jumlah</th>
+												<th width="25%">Subtotal</th>
+											</tr>
+										<?php } ?>
 									</thead>
 									<tbody>
 										<?php $i = 1;
+																																$ready = true;
 																																foreach ($detail as $detail1) { ?>
 											<tr>
 												<td><?= $i ?></td>
 												<td><?= $detail1['nama_produk'] ?></td>
 												<td><?= $detail1['jumlah'] ?></td>
+												<?php if ($pesanan['status'] == 'Produksi') { ?>
+													<td><?php if ($detail1['stok'] >= $detail1['jumlah']) {
+																																			$ready = true; ?>
+															<span class="badge bg-success">READY</span>
+														<?php } else {
+																																			$ready = false; ?>
+															<span class="badge bg-danger">NOT READY</span>
+														<?php } ?>
+													</td>
+												<?php } ?>
 												<td>Rp <?= number_format($detail1['total_harga'], 0, ',', '.') ?></td>
 
 											</tr>
@@ -154,7 +175,7 @@ include 'header.php';
 						<div class="row no-print">
 							<div class="col-12">
 								<?php if ($pesanan['status'] == 'Belum Diproduksi') { ?>
-									<form action="<?= base_url() ?>admin/pesanan/tambah_produksi" method="post">
+									<form action="<?= base_url() ?>admin/produksi/tambah_produksi" method="post">
 										<?php foreach ($detail as $detail2) { ?>
 											<?= form_hidden('id', $pesanan['id_pesanan']); ?>
 											<?= form_hidden('id_produk[]', $detail2['id_produk']); ?>
@@ -162,6 +183,18 @@ include 'header.php';
 										<?php } ?>
 										<button type="submit" class="btn btn-primary float-right">
 											<i class="fas fa-download"></i> Tambahkan ke Produksi
+										</button>
+									</form>
+								<?php } ?>
+								<?php if ($pesanan['status'] == 'Produksi' && $ready == true) { ?>
+									<form action="<?= base_url() ?>admin/pesanan/pesanan_selesai" method="post">
+										<?php foreach ($detail as $detail3) { ?>
+											<?= form_hidden('id', $pesanan['id_pesanan']); ?>
+											<?= form_hidden('id_produk[]', $detail3['id_produk']); ?>
+											<?= form_hidden('jumlah[]', $detail3['jumlah']); ?>
+										<?php } ?>
+										<button type="submit" class="btn btn-primary float-right">
+											<i class="fas fa-download"></i> Selesai Produksi
 										</button>
 									</form>
 								<?php } ?>

@@ -26,24 +26,34 @@ include 'header.php';
 						</div>
 						<div class="card-body">
 							<ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
-								<li class="nav-item">
-									<a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Menunggu Konfirmasi Pembayaran</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Belum Diproduksi</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Sedang Diproduksi</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Menunggu Pengiriman</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="custom-content-below-settings2-tab" data-toggle="pill" href="#custom-content-below-settings2" role="tab" aria-controls="custom-content-below-settings2" aria-selected="false">Sudah Dikirim</a>
-								</li>
+								<?php if ($this->session->userdata('level') == 'SPV') { ?>
+									<li class="nav-item">
+										<a class="nav-link  <?= $this->session->userdata('level') == 'SPV' ? 'active' : ''; ?>" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Menunggu Konfirmasi Pembayaran</a>
+									</li>
+								<?php } ?>
+								<?php if ($this->session->userdata('level') == 'SPV') { ?>
+									<li class="nav-item">
+										<a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Belum Diproduksi</a>
+									</li>
+								<?php } ?>
+								<?php if ($this->session->userdata('level') == 'SPV' || $this->session->userdata('level') == 'PRODUKSI') { ?>
+									<li class="nav-item">
+										<a class="nav-link  <?= $this->session->userdata('level') == 'PRODUKSI' ? 'show active' : ''; ?>" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Sedang Diproduksi</a>
+									</li>
+								<?php } ?>
+								<?php if ($this->session->userdata('level') == 'SPV') { ?>
+									<li class="nav-item">
+										<a class="nav-link" id="custom-content-below-settings-tab" data-toggle="pill" href="#custom-content-below-settings" role="tab" aria-controls="custom-content-below-settings" aria-selected="false">Menunggu Pengiriman</a>
+									</li>
+								<?php } ?>
+								<?php if ($this->session->userdata('level') == 'SPV') { ?>
+									<li class="nav-item">
+										<a class="nav-link" id="custom-content-below-settings2-tab" data-toggle="pill" href="#custom-content-below-settings2" role="tab" aria-controls="custom-content-below-settings2" aria-selected="false">Sudah Dikirim</a>
+									</li>
+								<?php } ?>
 							</ul>
 							<div class="tab-content" id="custom-content-below-tabContent">
-								<div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
+								<div class="tab-pane fade  <?= $this->session->userdata('level') == 'SPV' ? 'show active' : ''; ?>" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
 									<table id="example1" class="table table-bordered table-striped">
 										<thead>
 											<tr>
@@ -59,8 +69,8 @@ include 'header.php';
 										</thead>
 										<tbody>
 											<?php
-											$no = 1;
-											foreach ($pesanan1 as $pesanan1) { ?>
+															$no = 1;
+															foreach ($pesanan1 as $pesanan1) { ?>
 												<tr>
 													<td><?= $no ?></td>
 													<td><?= $pesanan1['nama'] ?></td>
@@ -110,7 +120,7 @@ include 'header.php';
 										</tbody>
 									</table>
 								</div>
-								<div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
+								<div class="tab-pane fade  <?= $this->session->userdata('level') == 'PRODUKSI' ? 'show active' : ''; ?>" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
 									<table id="example3" class="table table-bordered table-striped">
 										<thead>
 											<tr>
