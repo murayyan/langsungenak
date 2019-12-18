@@ -7,4 +7,9 @@ class Pengantaran extends CI_Controller
     {
         parent::__construct();
     }
+
+    public function jadwal_pengantaran()
+    {
+
+    }
 }

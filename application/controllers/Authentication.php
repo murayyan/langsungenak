@@ -172,6 +172,7 @@ class Authentication extends CI_Controller
 				$sess = [
 					'level' => $user['level'],
 					'nama' => $user['nama'],
+					'id_user' => $user['id'],
 					'login' => 'admin'
 				];
 				$this->session->set_userdata($sess);

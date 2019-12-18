@@ -154,7 +154,7 @@
 								</a>
 							</li>
 							<li class="nav-item">
-								<a href="<?= base_url('admin/data_user'); ?>" class="nav-link <?php echo $page == 'register' ? 'active' : ''; ?>">
+								<a href="<?= base_url('admin/jadwal_pengantaran'); ?>" class="nav-link <?php echo $page == 'jadwal_antar' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-th"></i>
 									<p>
 										Jadwal Pengantaran

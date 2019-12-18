@@ -176,7 +176,7 @@ include 'header.php';
 									</table>
 								</div>
 								<div class="tab-pane fade" id="custom-content-below-settings2" role="tabpanel" aria-labelledby="custom-content-below-settings2-tab">
-									<table id="example4" class="table table-bordered table-striped">
+									<table id="example5" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>No.</th>

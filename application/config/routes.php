@@ -53,6 +53,7 @@ $route['default_controller'] = 'home/katalog';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// user
 $route['login'] = 'authentication/login';
 $route['register'] = 'authentication/register';
 $route['logout'] = 'authentication/logout';
@@ -61,6 +62,7 @@ $route['checkout'] = 'home/checkout';
 $route['katalog'] = 'home/katalog';
 $route['payment/(:num)'] = 'home/payment/$1';
 
+// admin
 $route['admin'] = 'authentication/admin_login';
 $route['admin/login'] = 'authentication/admin_login';
 $route['admin/logout'] = 'authentication/admin_logout';
@@ -73,3 +75,4 @@ $route['admin/produk/(:num)'] = 'admin/produk/edit_produk/$1';
 $route['admin/data_pesanan'] = 'admin/pesanan/data_pesanan';
 $route['admin/pesanan/(:num)'] = 'admin/pesanan/detail_pesanan/$1';
 $route['admin/data_bahanbaku'] = 'admin/bahanbaku/data_bahanbaku';
+$route['admin/jadwal_pengantaran'] = 'admin/pengantaran/jadwal_pengantaran';
