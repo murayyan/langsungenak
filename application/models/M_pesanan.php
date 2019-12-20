@@ -44,4 +44,14 @@ class M_pesanan extends CI_Model
 		$this->db->join('customer c', 'p.customer = c.id');
 		return $this->db->get_where('pesanan p', $where);
 	}
+
+	public function get_bukti_bayar($id)
+	{
+		return $this->db->get_where('pembayaran', ['id_pesanan' => $id]);
+	}
+
+	public function get_kurir()
+	{
+		return $this->db->get_where('admin', ['level' => 'KURIR']);
+	}
 }

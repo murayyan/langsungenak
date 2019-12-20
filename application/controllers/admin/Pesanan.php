@@ -11,6 +11,7 @@ class Pesanan extends CI_Controller
 		$this->load->model('M_rencana_produksi');
 		$this->load->model('M_bahanbaku');
 		$this->load->model('M_produk');
+		$this->load->model('M_pengantaran');
 	}
 
 	public function authentication()
@@ -37,6 +38,9 @@ class Pesanan extends CI_Controller
 		$this->authentication();
 		$data['pesanan'] = $this->M_pesanan->get_pesananById(['p.id' => $id])->row_array();
 		$data['detail'] = $this->M_detail_pesanan->get_detail_pesanan($id)->result_array();
+		$data['bayar'] = $this->M_pesanan->get_bukti_bayar($id)->row_array();
+		$data['kurir'] = $this->M_pesanan->get_kurir()->result_array();
+		$data['kurirSet'] = $this->M_pengantaran->cekKurir($id)->num_rows();
 		$this->load->view('admin/detail_pesanan', $data);
 	}
 
@@ -52,6 +56,31 @@ class Pesanan extends CI_Controller
 			'status' => 'Belum Dikirim',
 		);
 		$this->M_pesanan->change_status($id_pesanan, $data);
+		redirect(base_url('admin/pesanan/data_pesanan'));
+	}
+
+	public function konfirmasiPembayaran()
+	{
+		$id = $this->input->post('id');
+		$data = array(
+			'status' => 'Belum Diproduksi',
+		);
+		$this->M_pesanan->change_status($id, $data);
+		redirect(base_url('admin/pesanan/data_pesanan'));
+	}
+
+	public function setKurir()
+	{
+		$id_pesanan = $this->input->post('id');
+		$id_kurir = $this->input->post('kurir');
+		$waktu_antar = $this->input->post('waktu_antar');
+		$data = array(
+			'id_pesanan' => $id_pesanan,
+			'id_kurir' => $id_kurir,
+			'waktu_pengantaran' => $waktu_antar,
+			'status' => 'Belum Dikirim'
+		);
+		$this->M_pengantaran->addJadwal($data);
 		redirect(base_url('admin/pesanan/data_pesanan'));
 	}
 }
