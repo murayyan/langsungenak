@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Des 2019 pada 11.06
--- Versi server: 10.3.16-MariaDB
--- Versi PHP: 7.3.7
+-- Generation Time: Dec 20, 2019 at 05:13 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `email`, `password`, `nama`, `nohp`, `level`) VALUES
@@ -49,7 +49,7 @@ INSERT INTO `admin` (`id`, `email`, `password`, `nama`, `nohp`, `level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bahan_baku`
+-- Table structure for table `bahan_baku`
 --
 
 CREATE TABLE `bahan_baku` (
@@ -60,7 +60,7 @@ CREATE TABLE `bahan_baku` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `bahan_baku`
+-- Dumping data for table `bahan_baku`
 --
 
 INSERT INTO `bahan_baku` (`id`, `nama_bahan`, `stok`, `gambar`) VALUES
@@ -70,7 +70,7 @@ INSERT INTO `bahan_baku` (`id`, `nama_bahan`, `stok`, `gambar`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -86,7 +86,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`id`, `nama`, `email`, `password`, `alamat`, `nohp`, `kapasitas_max`, `kapasitas_min`, `is_active`) VALUES
@@ -96,7 +96,7 @@ INSERT INTO `customer` (`id`, `nama`, `email`, `password`, `alamat`, `nohp`, `ka
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_pesanan`
+-- Table structure for table `detail_pesanan`
 --
 
 CREATE TABLE `detail_pesanan` (
@@ -109,7 +109,7 @@ CREATE TABLE `detail_pesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_pesanan`
+-- Dumping data for table `detail_pesanan`
 --
 
 INSERT INTO `detail_pesanan` (`id`, `id_pesanan`, `id_produk`, `nama_produk`, `jumlah`, `total_harga`) VALUES
@@ -117,27 +117,38 @@ INSERT INTO `detail_pesanan` (`id`, `id_pesanan`, `id_produk`, `nama_produk`, `j
 (16, 17, 1, 'roti boy', 3, 150000),
 (17, 18, 1, 'roti curut', 25, 150000),
 (18, 20, 1, 'roti curut', 25, 150000),
-(19, 21, 1, 'roti curut', 25, 150000);
+(19, 21, 1, 'roti curut', 25, 150000),
+(20, 22, 6, 'roti buaya', 17, 119000),
+(21, 22, 5, 'roti boy', 14, 98000),
+(22, 23, 6, 'roti buaya', 17, 119000),
+(23, 23, 5, 'roti boy', 14, 98000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jadwal_antar`
+-- Table structure for table `jadwal_antar`
 --
 
 CREATE TABLE `jadwal_antar` (
   `id` int(11) NOT NULL,
   `id_pesanan` int(11) NOT NULL,
-  `nama_pengantar` varchar(50) NOT NULL,
-  `waktu_pengantaran` datetime NOT NULL,
+  `id_kurir` int(11) NOT NULL,
+  `waktu_pengantaran` date NOT NULL,
   `waktu_selesai_antar` datetime NOT NULL,
   `status` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jadwal_antar`
+--
+
+INSERT INTO `jadwal_antar` (`id`, `id_pesanan`, `id_kurir`, `waktu_pengantaran`, `waktu_selesai_antar`, `status`) VALUES
+(1, 21, 4, '2019-12-18', '2019-12-20 17:02:01', 'Terkirim');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembayaran`
+-- Table structure for table `pembayaran`
 --
 
 CREATE TABLE `pembayaran` (
@@ -151,28 +162,17 @@ CREATE TABLE `pembayaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pembayaran`
+-- Dumping data for table `pembayaran`
 --
 
 INSERT INTO `pembayaran` (`id`, `id_pesanan`, `no_rekening`, `nama_rekening`, `bank_rekening`, `bank_tujuan`, `file`) VALUES
-(8, 21, '91029381', 'Maulidiya', 'BCA', 'BCA', '1576565099_age-0001.jpg');
+(8, 21, '91029381', 'Maulidiya', 'BCA', 'BCA', '1576565099_age-0001.jpg'),
+(9, 22, '8686869', 'ashvjhvash', 'masmn', 'BRI', '1576844025_ugas_res.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengantar`
---
-
-CREATE TABLE `pengantar` (
-  `id` int(11) NOT NULL,
-  `nama_pengantar` varchar(50) NOT NULL,
-  `no_hp` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `pesanan`
+-- Table structure for table `pesanan`
 --
 
 CREATE TABLE `pesanan` (
@@ -184,25 +184,28 @@ CREATE TABLE `pesanan` (
   `waktu_kirim` date NOT NULL,
   `jumlah` int(5) NOT NULL,
   `total_harga` int(20) NOT NULL,
+  `jumlah_retur` int(5) NOT NULL,
   `status` enum('Belum Dikirim','Terkirim','Menunggu Pembayaran','Menunggu Konfirmasi','Belum Diproduksi','Produksi') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pesanan`
+-- Dumping data for table `pesanan`
 --
 
-INSERT INTO `pesanan` (`id`, `customer`, `no_hp`, `alamat`, `waktu_pesan`, `waktu_kirim`, `jumlah`, `total_harga`, `status`) VALUES
-(16, 9, '081338423751', 'Jl. Veteran', '2019-11-20', '2019-11-16', 4, 24000, 'Terkirim'),
-(17, 9, '081338423751', 'Malang, Sawojajar', '2019-11-15', '2019-11-16', 3, 150000, 'Produksi'),
-(18, 9, '081338423751', 'Jl. Gunung', '2019-11-16', '2019-11-16', 25, 150000, 'Belum Dikirim'),
-(19, 9, '081338423751', 'Jl. Veteran', '2019-12-16', '2019-12-18', 25, 150000, 'Belum Dikirim'),
-(20, 9, '081338423751', 'Jl. Veteran', '2019-12-16', '2019-12-18', 25, 150000, 'Menunggu Pembayaran'),
-(21, 9, '085748009552', 'Jl. Veteran', '2019-12-17', '2019-12-18', 25, 150000, 'Belum Dikirim');
+INSERT INTO `pesanan` (`id`, `customer`, `no_hp`, `alamat`, `waktu_pesan`, `waktu_kirim`, `jumlah`, `total_harga`, `jumlah_retur`, `status`) VALUES
+(16, 9, '081338423751', 'Jl. Veteran', '2019-11-20', '2019-11-16', 4, 24000, 0, 'Terkirim'),
+(17, 9, '081338423751', 'Malang, Sawojajar', '2019-11-15', '2019-11-16', 3, 150000, 0, 'Produksi'),
+(18, 9, '081338423751', 'Jl. Gunung', '2019-11-16', '2019-11-16', 25, 150000, 0, 'Belum Dikirim'),
+(19, 9, '081338423751', 'Jl. Veteran', '2019-12-16', '2019-12-18', 25, 150000, 0, 'Belum Dikirim'),
+(20, 9, '081338423751', 'Jl. Veteran', '2019-12-16', '2019-12-18', 25, 150000, 0, 'Menunggu Pembayaran'),
+(21, 9, '085748009552', 'Jl. Veteran', '2019-12-17', '2019-12-18', 25, 150000, 0, 'Terkirim'),
+(22, 9, '', '', '2019-12-20', '0000-00-00', 31, 217000, 0, 'Belum Diproduksi'),
+(23, 9, '', '', '2019-12-20', '0000-00-00', 31, 217000, 0, 'Menunggu Pembayaran');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
@@ -212,11 +215,11 @@ CREATE TABLE `produk` (
   `kategori` varchar(50) NOT NULL,
   `harga` int(15) NOT NULL,
   `gambar` varchar(255) NOT NULL,
-  `stok` int(11) NOT NULL DEFAULT 0
+  `stok` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id`, `nama_produk`, `deskripsi`, `kategori`, `harga`, `gambar`, `stok`) VALUES
@@ -227,7 +230,7 @@ INSERT INTO `produk` (`id`, `nama_produk`, `deskripsi`, `kategori`, `harga`, `ga
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rencana_produksi`
+-- Table structure for table `rencana_produksi`
 --
 
 CREATE TABLE `rencana_produksi` (
@@ -238,7 +241,7 @@ CREATE TABLE `rencana_produksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `rencana_produksi`
+-- Dumping data for table `rencana_produksi`
 --
 
 INSERT INTO `rencana_produksi` (`id`, `id_produk`, `jumlah`, `status`) VALUES
@@ -251,25 +254,25 @@ INSERT INTO `rencana_produksi` (`id`, `id_produk`, `jumlah`, `status`) VALUES
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `bahan_baku`
+-- Indexes for table `bahan_baku`
 --
 ALTER TABLE `bahan_baku`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `detail_pesanan`
+-- Indexes for table `detail_pesanan`
 --
 ALTER TABLE `detail_pesanan`
   ADD PRIMARY KEY (`id`),
@@ -277,126 +280,114 @@ ALTER TABLE `detail_pesanan`
   ADD KEY `id_produk` (`id_produk`);
 
 --
--- Indeks untuk tabel `jadwal_antar`
+-- Indexes for table `jadwal_antar`
 --
 ALTER TABLE `jadwal_antar`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `pembayaran`
+-- Indexes for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_pesanan` (`id_pesanan`);
 
 --
--- Indeks untuk tabel `pengantar`
---
-ALTER TABLE `pengantar`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `pesanan`
+-- Indexes for table `pesanan`
 --
 ALTER TABLE `pesanan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `rencana_produksi`
+-- Indexes for table `rencana_produksi`
 --
 ALTER TABLE `rencana_produksi`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_produk` (`id_produk`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `bahan_baku`
+-- AUTO_INCREMENT for table `bahan_baku`
 --
 ALTER TABLE `bahan_baku`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `customer`
+-- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_pesanan`
+-- AUTO_INCREMENT for table `detail_pesanan`
 --
 ALTER TABLE `detail_pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT untuk tabel `jadwal_antar`
+-- AUTO_INCREMENT for table `jadwal_antar`
 --
 ALTER TABLE `jadwal_antar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `pembayaran`
+-- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `pengantar`
---
-ALTER TABLE `pengantar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `pesanan`
+-- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `rencana_produksi`
+-- AUTO_INCREMENT for table `rencana_produksi`
 --
 ALTER TABLE `rencana_produksi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `detail_pesanan`
+-- Constraints for table `detail_pesanan`
 --
 ALTER TABLE `detail_pesanan`
   ADD CONSTRAINT `detail_pesanan_ibfk_1` FOREIGN KEY (`id_pesanan`) REFERENCES `pesanan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `detail_pesanan_ibfk_2` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `pembayaran`
+-- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`id_pesanan`) REFERENCES `pesanan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `rencana_produksi`
+-- Constraints for table `rencana_produksi`
 --
 ALTER TABLE `rencana_produksi`
   ADD CONSTRAINT `rencana_produksi_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
