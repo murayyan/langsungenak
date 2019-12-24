@@ -88,7 +88,7 @@
 							</li>
 							<li class="nav-item">
 								<a href="<?= base_url('admin/data_pesanan'); ?>" class="nav-link <?php echo $page == 'pesanan' ? 'active' : ''; ?>">
-									<i class="nav-icon fas fa-th"></i>
+									<i class="nav-icon fas fa-bread-slice"></i>
 									<p>
 										Pesanan
 									</p>
@@ -96,7 +96,7 @@
 							</li>
 							<li class="nav-item">
 								<a href="<?= base_url('admin/produksi'); ?>" class="nav-link <?php echo $page == 'rencana_produksi' ? 'active' : ''; ?>">
-									<i class="nav-icon fas fa-th"></i>
+									<i class="nav-icon fas fa-archive"></i>
 									<p>
 										Rencana Produksi
 									</p>
@@ -104,7 +104,7 @@
 							</li>
 							<li class="nav-item">
 								<a href="<?= base_url('admin/data_produk') ?>" class="nav-link <?php echo $page == 'produk' ? 'active' : ''; ?>">
-									<i class="nav-icon fas fa-th"></i>
+									<i class="nav-icon fas fa-box-open"></i>
 									<p>
 										Produk
 									</p>
@@ -113,7 +113,7 @@
 
 							<li class="nav-item">
 								<a href="<?= base_url('admin/data_bahanbaku'); ?>" class="nav-link <?php echo $page == 'bahan' ? 'active' : ''; ?>">
-									<i class="nav-icon fas fa-th"></i>
+									<i class="nav-icon fas fa-boxes"></i>
 									<p>
 										Bahan Baku
 									</p>
@@ -121,7 +121,7 @@
 							</li>
 							<li class="nav-item">
 								<a href="<?= base_url('admin/jadwal_pengantaran'); ?>" class="nav-link <?php echo $page == 'jadwal_antar' ? 'active' : ''; ?>">
-									<i class="nav-icon fas fa-th"></i>
+									<i class="nav-icon fas fa-shipping-fast"></i>
 									<p>
 										Pengantaran
 									</p>
@@ -129,7 +129,7 @@
 							</li>
 							<li class="nav-item">
 								<a href="<?= base_url('admin/register'); ?>" class="nav-link <?php echo $page == 'register' ? 'active' : ''; ?>">
-									<i class="nav-icon fas fa-th"></i>
+									<i class="nav-icon fas fa-user-plus"></i>
 									<p>
 										Register
 									</p>
@@ -147,7 +147,7 @@
 							</li>
 							<li class="nav-item">
 								<a href="<?= base_url('admin/produksi'); ?>" class="nav-link <?php echo $page == 'rencana_produksi' ? 'active' : ''; ?>">
-									<i class="nav-icon fas fa-th"></i>
+									<i class="nav-icon fas fa-archive"></i>
 									<p>
 										Rencana Produksi
 									</p>
@@ -172,7 +172,7 @@
 							</li>
 							<li class="nav-item">
 								<a href="<?= base_url('admin/jadwal_pengantaran'); ?>" class="nav-link <?php echo $page == 'jadwal_antar' ? 'active' : ''; ?>">
-									<i class="nav-icon fas fa-th"></i>
+									<i class="nav-icon fas fa-shipping-fast"></i>
 									<p>
 										Jadwal Pengantaran
 									</p>

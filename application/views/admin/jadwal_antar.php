@@ -31,11 +31,11 @@ include 'header.php';
 							</a> -->
 							<ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
 								<li class="nav-item">
-									<a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Menunggu Konfirmasi Pembayaran</a>
+									<a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Belum Diantar</a>
 								</li>
-							
+
 								<li class="nav-item">
-									<a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Belum Diproduksi</a>
+									<a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Sudah Diantar</a>
 								</li>
 							</ul>
 							<div class="tab-content" id="custom-content-below-tabContent">
@@ -49,7 +49,7 @@ include 'header.php';
 												<th>No. Telepon</th>
 												<th>Waktu Antar</th>
 												<?php if ($this->session->userdata('level') == 'KURIR') { ?>
-												<th></th>
+													<th></th>
 												<?php } ?>
 											</tr>
 										</thead>
@@ -64,11 +64,11 @@ include 'header.php';
 													<td><?= $jadwal['no_hp'] ?></td>
 													<td><?= $jadwal['waktu_pengantaran'] ?></td>
 													<?php if ($this->session->userdata('level') == 'KURIR') { ?>
-													<td>
-														<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#sudahAntar" onclick="konfirmasi(<?= $jadwal['id_pesanan'] ?>, '<?= $jadwal['nama'] ?>')">
-															Sudah diantar
-														</button>
-													</td>
+														<td>
+															<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#sudahAntar" onclick="konfirmasi('<?= $jadwal['id_pesanan'] ?>', '<?= $jadwal['nama'] ?>')">
+																Sudah diantar
+															</button>
+														</td>
 													<?php } ?>
 												</tr>
 											<?php $no++;
@@ -76,7 +76,7 @@ include 'header.php';
 										</tbody>
 									</table>
 								</div>
-								
+
 								<div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
 									<table id="example2" class="table table-bordered table-striped">
 										<thead>
@@ -105,7 +105,7 @@ include 'header.php';
 									</table>
 								</div>
 							</div>
-							
+
 						</div>
 						<!-- /.card -->
 					</div>
