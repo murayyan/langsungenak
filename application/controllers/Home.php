@@ -58,13 +58,13 @@ class Home extends CI_Controller
 		redirect(base_url('pesanan'));
 	}
 
-	public function pesanan()
+	public function pesanan() 
 	{
 		$data['pesanan'] = $this->M_pesanan->get_pesanan(['customer' => $this->session->userdata('id')])->result_array();
 		$this->load->view('pesanan', $data);
 	}
 
-	public function katalog()
+	public function katalog() //produk
 	{
 		$data['produk'] = $this->M_produk->data_produk()->result_array();
 		$this->load->view('katalog', $data);
