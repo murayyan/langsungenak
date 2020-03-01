@@ -57,10 +57,10 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'authentication/login';
 $route['register'] = 'authentication/register';
 $route['logout'] = 'authentication/logout';
-$route['pesanan'] = 'home/pesanan';
-$route['checkout'] = 'home/checkout';
-$route['katalog'] = 'home/katalog';
-$route['payment/(:num)'] = 'home/payment/$1';
+$route['pesanan'] = 'customer/pesanan/pesanan';
+$route['checkout'] = 'customer/pesanan/checkout';
+$route['katalog'] = 'customer/pesanan/katalog';
+$route['payment/(:num)'] = 'customer/pembayaran/payment/$1';
 
 // admin
 $route['admin'] = 'authentication/admin_login';

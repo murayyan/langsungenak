@@ -37,7 +37,7 @@ class Authentication extends CI_Controller
 		$this->form_validation->set_rules('nohp', 'No. HP', 'trim|required|numeric');
 		if ($this->form_validation->run() == false) {
 			# code...
-			$this->load->view('register');
+			$this->load->view('customer/register');
 		} else {
 			$data = [
 				'nama' => $this->input->post('nama'),
@@ -66,7 +66,7 @@ class Authentication extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 			# code...
-			$this->load->view('login');
+			$this->load->view('customer/login');
 		} else {
 			$this->_cek_login();
 		}
