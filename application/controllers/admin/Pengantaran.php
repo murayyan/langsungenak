@@ -45,4 +45,10 @@ class Pengantaran extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status updated => Terkirim</div>');
         redirect('admin/jadwal_pengantaran');
     }
+
+    public function input_retur()
+    {
+        $this->authentication();
+        $this->load->view('admin/input_retur');
+    }
 }

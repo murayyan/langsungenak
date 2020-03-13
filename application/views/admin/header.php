@@ -178,6 +178,14 @@
 									</p>
 								</a>
 							</li>
+							<li class="nav-item">
+								<a href="<?= base_url('admin/input_retur'); ?>" class="nav-link <?php echo $page == 'input_retur' ? 'active' : ''; ?>">
+									<i class="nav-icon fas fa-recycle"></i>
+									<p>
+										Input Retur
+									</p>
+								</a>
+							</li>
 						<?php } ?>
 					</ul>
 				</nav>
