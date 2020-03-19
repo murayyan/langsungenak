@@ -48,7 +48,11 @@ class Pengantaran extends CI_Controller
 
     public function input_retur()
     {
-        $this->authentication();
-        $this->load->view('admin/input_retur');
+        if ($this->session->userdata('level') == 'KURIR') {
+            $data['retur'] = $this->M_pengantaran->inputRetur()->result_array();
+            $this->load->view('admin/input_retur', $data);
+        } else {
+            redirect('admin/login');
+        }
     }
 }

@@ -69,4 +69,13 @@ class M_pengantaran extends CI_Model
     {
         return $this->db->get_where('jadwal_antar', ['id_pesanan' => $id]);
     }
+
+    public function inputRetur()
+    {
+        $this->db->select('p.*, c.nama');
+        $this->db->from('pesanan p');
+        $this->db->join('customer c', 'p.customer = c.id');
+        $this->db->where('p.status', 'Terkirim');
+        return $this->db->get();
+    }
 }
