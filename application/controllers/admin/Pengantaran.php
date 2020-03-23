@@ -8,6 +8,7 @@ class Pengantaran extends CI_Controller
         parent::__construct();
         $this->load->model('M_pengantaran');
         $this->load->model('M_pesanan');
+        $this->load->model('M_customer');
     }
 
     public function authentication()
@@ -54,5 +55,37 @@ class Pengantaran extends CI_Controller
         } else {
             redirect('admin/login');
         }
+    }
+
+    public function updateRetur()
+    {
+        $idPesanan = $this->input->post('idPesanan');
+        $idCust = $this->input->post('idCust');
+        $kuota = $this->M_customer->getKuota(['id' => $idCust])->row_array();
+        $retur = $this->input->post('jumlahRetur');
+        $jumlahPesan = $this->input->post('jumlahPesan');
+        $data = array(
+			'jumlah_retur' => $retur
+        );
+        $this->M_pesanan->change_status($idPesanan, $data);
+
+        if ($retur > 0) {
+            if (($retur / $jumlahPesan) * 100 < 20) {
+                $newKuotaMax = floor($kuota['kapasitas_max'] + ($kuota['kapasitas_max'] * 0.1));
+                $newKuotaMin = $newKuotaMax / 2;
+                $this->M_customer->updateKuota(['id' => $idCust], ['kapasitas_max' => $newKuotaMax, 'kapasitas_min' => $newKuotaMin]);
+            } elseif (($retur / $jumlahPesan) * 100 > 40) {
+                $newKuotaMax = floor($kuota['kapasitas_max'] - ($kuota['kapasitas_max'] * 0.1));
+                $newKuotaMin = $newKuotaMax / 2;
+                $this->M_customer->updateKuota(['id' => $idCust], ['kapasitas_max' => $newKuotaMax, 'kapasitas_min' => $newKuotaMin]);
+            }
+        } else {
+            $newKuotaMax = floor($kuota['kapasitas_max'] + ($kuota['kapasitas_max'] * 0.1));
+            $newKuotaMin = $newKuotaMax / 2;
+            $this->M_customer->updateKuota(['id' => $idCust], ['kapasitas_max' => $newKuotaMax, 'kapasitas_min' => $newKuotaMin]);
+        }
+        
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Status updated => Input roti retur</div>');
+        redirect('admin/input_retur');
     }
 }
