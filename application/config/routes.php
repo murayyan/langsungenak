@@ -56,6 +56,8 @@ $route['translate_uri_dashes'] = FALSE;
 // user
 $route['login'] = 'authentication/login';
 $route['register'] = 'authentication/register';
+$route['profil'] = 'customer/profil/profil';
+$route['update_profil'] = 'customer/profil/profil';
 $route['logout'] = 'authentication/logout';
 $route['pesanan'] = 'customer/pesanan/pesanan';
 $route['checkout'] = 'customer/pesanan/checkout';

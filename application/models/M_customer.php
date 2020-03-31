@@ -9,6 +9,18 @@ class M_customer extends CI_Model{
 	private $nohp;
 	private $is_active;
 
+	public function getCust($where)
+	{
+		return $this->db->get_where('customer', $where);
+	}
+
+	public function updateCust($data, $where)
+	{
+		$this->db->set($data);
+		$this->db->where($where);
+		$this->db->update('customer');
+	}
+
 	public function register($data)
 	{
 		$this->db->insert('customer', $data);

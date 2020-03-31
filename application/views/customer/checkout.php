@@ -26,7 +26,7 @@
 			</span>
 		</h3>
 		<!-- //tittle heading -->
-		<p><?php echo $this->session->flashdata('data'); ?></p>
+		<p style="color: red"><?php echo $this->session->flashdata('data'); ?></p>
 		<div class="checkout-right">
 			<form action="<?= base_url('home/tambah_pesanan') ?>" method="post">
 				<div class="table-responsive">

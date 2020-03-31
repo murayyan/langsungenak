@@ -89,7 +89,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<a class="nav-stylehead" href="<?= base_url('pesanan') ?>">Pesanan</a>
 						</li>
 						<li class="">
-							<a class="nav-stylehead" href="#">Profil</a>
+							<a class="nav-stylehead" href="<?= base_url('profil') ?>">Profil</a>
 						</li>
 						<li>
 

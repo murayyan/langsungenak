@@ -13,7 +13,7 @@
 						<a href="index.html">Home</a>
 						<i>|</i>
 					</li>
-					<li>Checkout</li>
+					<li>Login</li>
 				</ul>
 			</div>
 		</div>
