@@ -26,7 +26,6 @@ class Bahanbaku extends CI_Controller
         $this->authentication();
         $data = [
             'nama_bahan' => $this->input->post('nama_bahan'),
-            'kategori' => $this->input->post('kategori'),
             'stok' => $this->input->post('stok')
         ];
 
@@ -40,7 +39,6 @@ class Bahanbaku extends CI_Controller
         $this->authentication();
         $data = [
             'nama_bahan' => $this->input->post('nama_bahan'),
-            'kategori' => $this->input->post('kategori'),
             'stok' => $this->input->post('stok')
         ];
 

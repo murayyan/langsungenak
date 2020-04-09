@@ -66,6 +66,6 @@ class Produksi extends CI_Controller
 			$this->M_produk->change_stok($id_produk[$key], $jumlah[$key]);
 			$this->M_rencana_produksi->change_status($id_produk[$key]);
 		}
-		redirect(base_url('admin/produksi'));
+		redirect(base_url('admin/data_pesanan'));
 	}
 }

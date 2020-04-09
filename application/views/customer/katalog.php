@@ -51,7 +51,7 @@
 							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 								<fieldset>
 									<div class="quantity-select">
-										<form action="<?= base_url('home/add_cart') ?>" method="post">
+										<form action="<?= base_url('customer/pesanan/add_cart') ?>" method="post">
 											<div class="value-button value-minus" id="decrease" value="Decrease Value">-</div>
 											<input type="number" name="jumlah" class="number" value="0" min="0" />
 											<?= form_hidden('id', $produk['id']); ?>

@@ -57,7 +57,7 @@
 							</div>
 									</div>
 									<div class="col-md-6 number-paymk">
-										<form class="cc-form" action="<?= base_url('home/make_payment')?>" method="post" enctype="multipart/form-data">
+										<form class="cc-form" action="<?= base_url('customer/pembayaran/make_payment')?>" method="post" enctype="multipart/form-data">
 											<div class="clearfix">
 												<div class="form-group form-group-cc-number">
 													<label>No Rekening Pengirim</label>

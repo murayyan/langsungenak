@@ -55,7 +55,8 @@ class Pesanan extends CI_Controller
 				'qty' => $coming,
 				'price'   => $data->harga,
 				'name'   => $data->nama_produk,
-				'id_produk' => $data->id
+				'id_produk' => $data->id,
+				'image' => $data->gambar
 			);
 
 			$this->cart->insert($cart);

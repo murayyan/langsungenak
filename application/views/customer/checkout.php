@@ -28,7 +28,7 @@
 		<!-- //tittle heading -->
 		<p style="color: red"><?php echo $this->session->flashdata('data'); ?></p>
 		<div class="checkout-right">
-			<form action="<?= base_url('home/tambah_pesanan') ?>" method="post">
+			<form action="<?= base_url('customer/pesanan/tambah_pesanan') ?>" method="post">
 				<div class="table-responsive">
 					<table class="timetable_sub">
 						<thead>
@@ -55,9 +55,9 @@
 									<tr class="rem1">
 										<td class="invert"><?= $i ?></td>
 										<td class="invert-image">
-											<a href="single2.html">
-												<img src="images/a7.jpg" alt=" " class="img-responsive">
-											</a>
+											<!-- <a href="single2.html"> -->
+											<img src="<?= base_url('assets/images/gambar_produk/') . $items['image'] ?>" alt=" " class="img-responsive">
+											<!-- </a> -->
 										</td>
 										<td class="invert"><?= $items['name'] ?></td>
 										<td class="invert">
@@ -77,7 +77,7 @@
 										<td class="invert tot_harga" id="tot_harga_item">Rp <?= number_format($items['qty'] * $items['price'], 0, ",", ".") ?></td>
 										<td class="invert">
 											<div class="rem">
-												<a href="<?= base_url('home/d/') . $items['rowid'] ?>" class="close1"> </a>
+												<a href="<?= base_url('customer/pesanan/d/') . $items['rowid'] ?>" class="close1"> </a>
 											</div>
 										</td>
 									</tr>
