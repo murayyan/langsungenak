@@ -37,7 +37,7 @@ class Pembayaran extends CI_Controller
 			'max_size' 		=> '10000'
 		];
 		$data = [
-			'id_pesanan' 		=> $id_pesanan,
+			'id_pesanan' 	=> $id_pesanan,
 			'no_rekening' 	=> $no_rek,
 			'nama_rekening'	=> $nama_rek,
 			'bank_rekening'	=> $bank_rek,

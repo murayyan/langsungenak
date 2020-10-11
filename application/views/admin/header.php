@@ -137,14 +137,14 @@
 							</li>
 
 						<?php } else if ($this->session->userdata('level') == 'PRODUKSI') { ?>
-							<li class="nav-item has-treeview">
+							<!-- <li class="nav-item has-treeview">
 								<a href="<?= base_url('admin/dashboard'); ?>" class="nav-link <?php echo $page == 'dashboard' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-tachometer-alt"></i>
 									<p>
 										Dashboard
 									</p>
 								</a>
-							</li>
+							</li> -->
 							<li class="nav-item">
 								<a href="<?= base_url('admin/produksi'); ?>" class="nav-link <?php echo $page == 'rencana_produksi' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-archive"></i>
@@ -162,13 +162,13 @@
 								</a>
 							</li>
 						<?php } else { ?>
-							<li class="nav-item has-treeview">
+							<!-- <li class="nav-item has-treeview">
 								<a href="<?= base_url('admin/dashboard'); ?>" class="nav-link <?php echo $page == 'dashboard' ? 'active' : ''; ?>">
 									<i class="nav-icon fas fa-tachometer-alt"></i>
 									<p>
 										Dashboard
 									</p>
-								</a>
+								</a> -->
 							</li>
 							<li class="nav-item">
 								<a href="<?= base_url('admin/jadwal_pengantaran'); ?>" class="nav-link <?php echo $page == 'jadwal_antar' ? 'active' : ''; ?>">

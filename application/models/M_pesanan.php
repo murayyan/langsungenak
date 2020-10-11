@@ -54,4 +54,11 @@ class M_pesanan extends CI_Model
 	{
 		return $this->db->get_where('admin', ['level' => 'KURIR']);
 	}
+
+	public function get_omset($tahun){
+		$this->db->select_sum('total_harga');
+		$this->db->where_not_in('status', ['Menunggu Pembayaran', 'Menunggu Konfirmasi']);
+		$this->db->like('waktu_pesan', $tahun, 'after');
+		return $this->db->get('pesanan');
+	}
 }

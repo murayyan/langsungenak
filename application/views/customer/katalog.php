@@ -33,7 +33,9 @@
 		<!-- //tittle heading -->
 		<div class="checkout-right">
 			<p><?php echo $this->session->flashdata('data'); ?></p>
-			<h4>Jumlah maksimal pesanan: <span><?= $this->session->userdata('max') ?> pcs</span>
+			<?php if ($this->session->userdata('max')) { ?>
+				<h4>Jumlah maksimal pesanan: <span><?= $this->session->userdata('max') ?> pcs</span>
+			<?php } ?>
 			</h4>
 			<?php foreach ($produk as $produk) { ?>
 				<div class="col-md-2 product-men">
