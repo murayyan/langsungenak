@@ -65,9 +65,10 @@ include 'header.php';
 													<td><?= $jadwal['waktu_pengantaran'] ?></td>
 													<?php if ($this->session->userdata('level') == 'KURIR') { ?>
 														<td>
-															<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#sudahAntar" onclick="konfirmasi('<?= $jadwal['id_pesanan'] ?>', '<?= $jadwal['nama'] ?>')">
+															<a href="<?= base_url('admin/jadwal_pengantaran/detail/' . $jadwal['id_pesanan']) ?>" class="btn btn-sm btn-primary">Detail</a>
+															<!-- <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#sudahAntar" onclick="konfirmasi('<?= $jadwal['id_pesanan'] ?>', '<?= $jadwal['nama'] ?>')">
 																Sudah diantar
-															</button>
+															</button> -->
 														</td>
 													<?php } ?>
 												</tr>
@@ -117,38 +118,5 @@ include 'header.php';
 	</section>
 </div>
 <!-- /.content-wrapper -->
-<!-- modal -->
-<div class="modal fade" id="sudahAntar">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Sudah diantar</h4>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span></button>
-			</div>
 
-			<form action="<?= base_url('admin/pengantaran/updateStatus') ?>" method="post">
-				<div class="modal-body">
-					<p id="kalimatAntar"></p>
-					<input type="hidden" name="id" id="idPesan">
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-					<button type="submit" class="btn btn-success">Ya, Sudah diantar</button>
-				</div>
-			</form>
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
-<!-- /.control-sidebar -->
-<script>
-	function konfirmasi(id, nama) {
-		document.getElementById('idPesan').value = id
-		document.getElementById("kalimatAntar").innerHTML = "Apakah pesanan \"" + nama + "\" sudah diantar ?"
-	}
-</script>
 <?php include 'footer.php'; ?>

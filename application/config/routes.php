@@ -79,4 +79,5 @@ $route['admin/produksi'] = 'admin/produksi/produksi';
 $route['admin/pesanan/(:num)'] = 'admin/pesanan/detail_pesanan/$1';
 $route['admin/data_bahanbaku'] = 'admin/bahanbaku/data_bahanbaku';
 $route['admin/jadwal_pengantaran'] = 'admin/pengantaran/jadwal_pengantaran';
+$route['admin/jadwal_pengantaran/detail/(:num)'] = 'admin/pengantaran/detail_pengantaran/$1';
 $route['admin/input_retur'] = 'admin/pengantaran/input_retur';

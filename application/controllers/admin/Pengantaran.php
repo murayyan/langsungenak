@@ -8,6 +8,7 @@ class Pengantaran extends CI_Controller
         parent::__construct();
         $this->load->model('M_pengantaran');
         $this->load->model('M_pesanan');
+        $this->load->model('M_detail_pesanan');
         $this->load->model('M_customer');
     }
 
@@ -29,6 +30,15 @@ class Pengantaran extends CI_Controller
             $data['jadwalTerkirim'] = $this->M_pengantaran->jadwal_terkirim($this->session->userdata('id_user'))->result_array();
         }
         $this->load->view('admin/jadwal_antar', $data);
+    }
+
+    public function detail_pengantaran($id)
+    {
+        $this->authentication();
+		$data['pesanan'] = $this->M_pesanan->get_pesananById(['p.id' => $id])->row_array();
+		$data['detail'] = $this->M_detail_pesanan->get_detail_pesanan($id)->result_array();
+		$data['bayar'] = $this->M_pesanan->get_bukti_bayar($id)->row_array();
+		$this->load->view('admin/detail_pengantaran', $data);
     }
 
     public function updateStatus()
