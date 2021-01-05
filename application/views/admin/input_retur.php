@@ -34,27 +34,31 @@ include 'header.php';
                       <th>Alamat</th>
                       <th>No Telepon</th>
                       <th>Waktu Pengiriman</th>
-                      <th>Jumlah Retur</th>
+                      <!-- <th>Jumlah Retur</th> -->
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
                     $no = 1;
-                    foreach ($retur as $retur) { ?>
+                    foreach ($retur as $retur) { 
+                      // untuk menampilkan data yg belum diinputkan retur nya saja
+                      if ($retur['jumlah_retur'] == NULL) { ?>
+                      
                       <tr>
                         <td><?= $no ?></td>
                         <td><?= $retur['nama'] ?></td>
                         <td><?= $retur['alamat'] ?></td>
                         <td><?= $retur['no_hp'] ?></td>
                         <td><?= $retur['waktu_kirim'] ?></td>
-                        <td><?= ($retur['jumlah_retur'] == NULL) ? '-' : $retur['jumlah_retur']  ?></td>
+                        <!-- <td><?= ($retur['jumlah_retur'] == NULL) ? '-' : $retur['jumlah_retur']  ?></td> -->
                         <td>
                           <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#inputRetur" onclick="inputRetur('<?= $retur['id'] ?>', '<?= $retur['customer'] ?>', '<?= $retur['jumlah'] ?>')">
                             Input Retur</button>
                         </td>
                       </tr>
                     <?php $no++;
+                      }
                     } ?>
                     </tfoot>
                 </table>        
